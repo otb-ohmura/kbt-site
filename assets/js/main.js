@@ -429,6 +429,14 @@
   var done = document.getElementById('formDone');
   var errorEl = form.querySelector('.form-error');
 
+  // Web3Forms → info@kbt-inc.jp
+  var ENDPOINT = 'https://api.web3forms.com/submit';
+  var loadedAt = Date.now();
+  var COOLDOWN_MS = 60 * 1000;
+
+  function resetCaptcha() { if (window.hcaptcha) { try { window.hcaptcha.reset(); } catch (_) {} } }
+  function urlCount(v) { return (v.match(/https?:\/\/|www\./gi) || []).length; }
+
   form.addEventListener('input', function (e) {
     var f = e.target.closest('.field');
     if (f) f.classList.remove('is-invalid');
@@ -437,35 +445,76 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    errorEl.textContent = '';
+
+    // Honeypot: 人間には見えない欄にチェックがあれば bot → 成功したふりをして何も送らない
+    if (form.botcheck.checked) { showDone(); return; }
+
     var invalid = [];
     form.querySelectorAll('[required]').forEach(function (input) {
-      var ok = input.value.trim() !== '' && (input.type !== 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim()));
-      input.closest('.field').classList.toggle('is-invalid', !ok);
+      var v = input.type === 'checkbox' ? '' : input.value.trim();
+      var ok;
+      if (input.type === 'checkbox') ok = input.checked;
+      else if (input.type === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      else if (input.name === 'message') ok = v.length >= 10 && urlCount(v) <= 2;
+      else ok = v !== '';
+      var field = input.closest('.field');
+      var fieldOk = input.type === 'checkbox'
+        ? Array.prototype.every.call(field.querySelectorAll('input[type=checkbox][required]'), function (c) { return c.checked; })
+        : ok;
+      field.classList.toggle('is-invalid', !fieldOk);
       if (!ok) invalid.push(input);
     });
     if (invalid.length) {
-      errorEl.textContent = '必須項目を正しくご入力ください。 / Please complete the required fields.';
+      errorEl.textContent = '必須項目を正しくご入力ください（お問い合わせ内容は10文字以上・URLは2件まで）。';
       invalid[0].focus();
       return;
     }
+
+    // ページを開いてから極端に早い送信は自動入力とみなす
+    if (Date.now() - loadedAt < 4000) { errorEl.textContent = '入力内容をご確認のうえ、もう一度送信してください。'; return; }
+
+    // 連続送信の防止（同じブラウザから60秒以内）
+    var last = 0;
+    try { last = Number(localStorage.getItem('kbt_contact_sent_at')) || 0; } catch (_) {}
+    if (Date.now() - last < COOLDOWN_MS) { errorEl.textContent = '先ほど送信済みです。しばらく時間をおいてから再度お試しください。'; return; }
+
+    var key = form.access_key.value;
+    if (!key || key.indexOf('YOUR_') === 0) {
+      errorEl.textContent = '現在フォームの準備中です。恐れ入りますが時間をおいて再度お試しください。';
+      console.warn('Web3Forms access key is not set.');
+      return;
+    }
+
+    var tokenEl = form.querySelector('[name="h-captcha-response"]');
+    if (!tokenEl || !tokenEl.value) { errorEl.textContent = '「私はロボットではありません」の確認を完了してください。'; return; }
+
+    var topicEl = form.elements.topic;
+    form.subject.value = '【KBT お問い合わせ】' + (topicEl ? topicEl.value : 'その他') + ' - ' + form.elements.name.value.trim() + '様';
 
     var btn = form.querySelector('.submit-btn');
     btn.classList.add('is-sending');
     btn.querySelector('.label').textContent = 'SENDING…';
 
-    // To connect a real backend (e.g. Formspree), set data-endpoint="https://formspree.io/f/xxxx" on the form.
-    var endpoint = form.getAttribute('data-endpoint');
-    var send = endpoint
-      ? fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
-          .then(function (res) { if (!res.ok) throw new Error('send failed'); })
-      : new Promise(function (resolve) { setTimeout(resolve, 900); });
-
-    send.then(showDone).catch(function () {
-      errorEl.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
-    }).finally(function () {
-      btn.classList.remove('is-sending');
-      btn.querySelector('.label').textContent = 'SEND MESSAGE';
-    });
+    fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok || !data.success) throw new Error(data.message || 'send failed');
+        });
+      })
+      .then(function () {
+        try { localStorage.setItem('kbt_contact_sent_at', String(Date.now())); } catch (_) {}
+        showDone();
+        resetCaptcha();
+      })
+      .catch(function () {
+        errorEl.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。';
+        resetCaptcha();
+      })
+      .finally(function () {
+        btn.classList.remove('is-sending');
+        btn.querySelector('.label').textContent = 'SEND MESSAGE';
+      });
   });
 
   function showDone() {
@@ -528,6 +577,7 @@
   }
 
   openBtn.addEventListener('click', openModal);
+  document.querySelectorAll('.privacy-inline').forEach(function (b) { b.addEventListener('click', openModal); });
   modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { closeModal(); closeMenu(); }

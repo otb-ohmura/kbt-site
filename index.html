@@ -6,6 +6,7 @@
   <title>KBT Inc. | Timeless Japanese Culture to the World</title>
   <meta name="description" content="KBT株式会社（KBT Inc.）は、日本が誇る希少なコレクターズアイテムやポップカルチャーの結晶を「現代の文化財」としてキュレーションし、世界中のコレクターへ届けます。">
   <meta name="theme-color" content="#0A0A0E">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta property="og:title" content="KBT Inc. | Beyond Borders, Preserving Excellence.">
   <meta property="og:description" content="日本のカルチャーを、世界の至宝へ。">
   <meta property="og:type" content="website">
@@ -290,25 +291,55 @@
           <p class="body-jp mt-10 text-muted reveal-up">
             お取引・パートナーシップ・メディア掲載に関するご相談は、こちらのフォームよりお気軽にお問い合わせください。担当者より折り返しご連絡いたします。
           </p>
+          <p class="form-notice reveal-up">
+            営業・勧誘・広告掲載等のご案内はお断りしております。また、自動化ツールやAIエージェントによる送信はご遠慮ください。これらのお問い合わせには返信いたしかねます。
+          </p>
         </div>
 
         <div class="form-wrap md:col-span-6 md:col-start-7">
           <form id="contactForm" class="contact-form" novalidate>
+            <!-- ▼ Web3Forms の Access Key（info@kbt-inc.jp 宛てに発行したもの）に置き換えてください。公開しても安全な値です。 -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="from_name" value="KBT Website">
+            <input type="hidden" name="subject" value="">
+            <!-- Honeypot: 人間には見えない欄。チェックがあればbotとして破棄 -->
+            <div class="hp" aria-hidden="true">
+              <label for="f-botcheck">この欄は空のままにしてください</label>
+              <input id="f-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="field reveal-up">
-              <input id="f-name" name="name" type="text" placeholder=" " required autocomplete="name">
+              <input id="f-name" name="name" type="text" placeholder=" " required maxlength="80" autocomplete="name">
               <label for="f-name">お名前 <span>Name</span><em>*</em></label>
             </div>
             <div class="field reveal-up">
-              <input id="f-company" name="company" type="text" placeholder=" " autocomplete="organization">
+              <input id="f-company" name="company" type="text" placeholder=" " maxlength="120" autocomplete="organization">
               <label for="f-company">貴社名 <span>Company</span></label>
             </div>
             <div class="field reveal-up">
-              <input id="f-email" name="email" type="email" placeholder=" " required autocomplete="email">
+              <input id="f-email" name="email" type="email" placeholder=" " required maxlength="254" autocomplete="email">
               <label for="f-email">メールアドレス <span>Email</span><em>*</em></label>
             </div>
+            <div class="field field-select reveal-up">
+              <label for="f-topic" class="static-label">お問い合わせ種別 <span>Topic</span></label>
+              <select id="f-topic" name="topic">
+                <option value="お取引について">お取引について</option>
+                <option value="事業提携">事業提携</option>
+                <option value="メディア・取材">メディア・取材</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
             <div class="field reveal-up">
-              <textarea id="f-message" name="message" rows="5" placeholder=" " required></textarea>
+              <textarea id="f-message" name="message" rows="5" placeholder=" " required minlength="10" maxlength="3000"></textarea>
               <label for="f-message">お問い合わせ内容 <span>Message</span><em>*</em></label>
+            </div>
+            <div class="field consent reveal-up">
+              <label><input id="f-not-sales" name="not_sales" type="checkbox" value="はい" required><span>営業・勧誘・広告を目的としたお問い合わせではありません<em>*</em></span></label>
+              <label><input id="f-privacy" name="privacy_agreed" type="checkbox" value="同意" required><span><button type="button" class="privacy-inline">プライバシーポリシー</button>に同意します<em>*</em></span></label>
+            </div>
+            <!-- hCaptcha（Web3Forms 無料プラン用の共有サイトキー） -->
+            <div class="captcha reveal-up">
+              <div class="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2" data-theme="dark"></div>
             </div>
             <p class="form-error" role="alert" aria-live="polite"></p>
             <button type="submit" class="submit-btn reveal-up">
@@ -374,6 +405,7 @@
         <p>当社は、法令に基づく場合を除き、ご本人の同意を得ることなく個人情報を第三者に提供いたしません。</p>
         <h3>4. 委託</h3>
         <p>当社は、利用目的の達成に必要な範囲で個人情報の取り扱いを外部に委託する場合があります。その際は、委託先に対し適切な監督を行います。</p>
+        <p>なお、お問い合わせフォームの送信処理には外部サービス「Web3Forms」を、不正送信の防止には「hCaptcha」を利用しており、ご入力内容はこれらのサービスを経由して当社に届きます。</p>
         <h3>5. 安全管理措置</h3>
         <p>当社は、個人情報の漏えい、滅失またはき損の防止その他の安全管理のため、必要かつ適切な措置を講じます。</p>
         <h3>6. 開示・訂正・利用停止等</h3>
@@ -394,5 +426,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="https://js.hcaptcha.com/1/api.js?hl=ja" async defer></script>
 </body>
 </html>

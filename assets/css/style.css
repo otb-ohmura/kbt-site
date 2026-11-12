@@ -282,6 +282,34 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-24px) scale(.82); color: var(--gold);
 }
 .field.is-invalid input, .field.is-invalid textarea { border-bottom-color: rgba(214, 110, 98, .7); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-notice {
+  margin-top: 32px; padding: 18px 20px; border-left: 1px solid var(--gold);
+  background: rgba(197,160,89,.06); font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px; line-height: 2; letter-spacing: .06em; color: rgba(247,247,245,.7);
+}
+.field-select .static-label {
+  position: static; transform: none; display: block; font-family: "Noto Sans JP", sans-serif; font-size: 12px; letter-spacing: .12em; color: var(--muted);
+}
+.field-select .static-label span { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; margin-left: 8px; opacity: .7; }
+.field-select select {
+  width: 100%; margin-top: 10px; padding: 12px 28px 12px 0; background: transparent; color: var(--hakuji);
+  border: 0; border-bottom: 1px solid var(--line-dark); border-radius: 0; outline: none;
+  font-family: "Noto Sans JP", var(--sans); font-size: 15px; letter-spacing: .06em;
+  -webkit-appearance: none; appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+  background-position: calc(100% - 12px) 55%, calc(100% - 7px) 55%; background-size: 5px 5px; background-repeat: no-repeat;
+}
+.field-select select option { background: var(--sumi); color: var(--hakuji); }
+.consent { display: flex; flex-direction: column; gap: 14px; }
+.consent label { position: static; transform: none; pointer-events: auto; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-family: "Noto Sans JP", sans-serif; font-size: 13px; line-height: 1.8; letter-spacing: .06em; color: rgba(247,247,245,.8); }
+.consent input { margin-top: 5px; width: 15px; height: 15px; accent-color: var(--gold); flex-shrink: 0; }
+.consent em { color: var(--gold); font-style: normal; margin-left: 4px; }
+.consent.is-invalid label { color: #E58B80; }
+.consent::after { display: none; }
+.privacy-inline { color: var(--gold); border-bottom: 1px solid var(--gold-soft); }
+.privacy-inline:hover { border-color: var(--gold); }
+.captcha { min-height: 78px; }
 .form-error { min-height: 1.2em; font-size: 12px; letter-spacing: .08em; color: #D66E62; margin-top: -16px; }
 
 .submit-btn {

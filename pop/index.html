@@ -6,6 +6,7 @@
   <title>KBT株式会社 | KBT Inc. — 日本のポップカルチャーを、世界へ。</title>
   <meta name="description" content="KBT株式会社（KBT Inc.）は、トレーディングカードやトイ、日本ならではのポップカルチャーアイテムをキュレーションし、世界中のファンへ届ける企業です。" />
   <meta name="theme-color" content="#0EA5E9" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta property="og:title" content="KBT Inc. — 日本の「好き」と「熱狂」を、世界中のファンへ。" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230EA5E9'/%3E%3Cstop offset='.55' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%23F43F5E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M14 44c0-11 8-18 18-18s18 7 18 18z' fill='white'/%3E%3Cpath d='M32 34C25 28 15 21 10 6M32 34c7-6 17-13 22-28' stroke='%23FDE047' stroke-width='4.5' fill='none' stroke-linecap='round'/%3E%3Crect x='10' y='44' width='44' height='7' rx='3.5' fill='white'/%3E%3C/svg%3E" />
@@ -683,46 +684,75 @@
         <p class="text-sm text-slate-600 font-jp">
           お取引や事業提携、その他のお問い合わせは以下のフォームよりお気軽にご連絡ください。
         </p>
+        <p class="mt-4 inline-flex items-start gap-2 text-left px-4 py-3 rounded-2xl bg-amber-50 border border-amber-200 text-[12px] leading-relaxed text-amber-800 font-jp">
+          <span aria-hidden="true">⚠️</span>
+          <span>営業・勧誘・広告掲載等のご案内はお断りしております。また、自動化ツールやAIエージェントによる送信はご遠慮ください。これらのお問い合わせには返信いたしかねます。</span>
+        </p>
       </div>
 
       <div id="form-wrap" class="relative fade-up">
         <form id="contact-form" class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-5" novalidate>
+          <!-- ▼ Web3Forms の Access Key（info@kbt-inc.jp 宛てに発行したもの）に置き換えてください。公開しても安全な値です。 -->
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+          <input type="hidden" name="from_name" value="KBT Website">
+          <input type="hidden" name="subject" value="">
+          <!-- Honeypot: 人間には見えない欄。入力があればbotとして破棄 -->
+          <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+            <label for="f-botcheck">この欄は空のままにしてください</label>
+            <input id="f-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div class="field">
               <label for="f-name" class="block text-xs font-bold text-slate-700 mb-2">お名前 <span class="text-pop-pink">*</span></label>
-              <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="山田 太郎" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+              <input id="f-name" name="name" type="text" required maxlength="80" autocomplete="name" placeholder="山田 太郎" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
               <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">お名前を入力してください</p>
             </div>
             <div class="field">
               <label for="f-company" class="block text-xs font-bold text-slate-700 mb-2">会社名 <span class="text-slate-400 font-medium">（任意）</span></label>
-              <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+              <input id="f-company" name="company" type="text" maxlength="120" autocomplete="organization" placeholder="株式会社〇〇" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
             </div>
           </div>
 
           <div class="field">
             <label for="f-email" class="block text-xs font-bold text-slate-700 mb-2">メールアドレス <span class="text-pop-pink">*</span></label>
-            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="info@example.com" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+            <input id="f-email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="info@example.com" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
             <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">正しいメールアドレスを入力してください</p>
           </div>
 
           <div class="field">
             <label for="f-topic" class="block text-xs font-bold text-slate-700 mb-2">お問い合わせ種別</label>
             <div class="flex flex-wrap gap-2" role="radiogroup" aria-labelledby="f-topic">
-              <label class="cursor-pointer"><input type="radio" name="topic" value="trade" class="peer sr-only" checked><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-blue peer-checked:text-white peer-checked:border-pop-blue peer-focus-visible:ring-4 peer-focus-visible:ring-sky-200 transition-colors">お取引について</span></label>
-              <label class="cursor-pointer"><input type="radio" name="topic" value="partner" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-indigo peer-checked:text-white peer-checked:border-pop-indigo peer-focus-visible:ring-4 peer-focus-visible:ring-indigo-200 transition-colors">事業提携</span></label>
-              <label class="cursor-pointer"><input type="radio" name="topic" value="other" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-pink peer-checked:text-white peer-checked:border-pop-pink peer-focus-visible:ring-4 peer-focus-visible:ring-rose-200 transition-colors">その他</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="お取引について" class="peer sr-only" checked><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-blue peer-checked:text-white peer-checked:border-pop-blue peer-focus-visible:ring-4 peer-focus-visible:ring-sky-200 transition-colors">お取引について</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="事業提携" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-indigo peer-checked:text-white peer-checked:border-pop-indigo peer-focus-visible:ring-4 peer-focus-visible:ring-indigo-200 transition-colors">事業提携</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="その他" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-pink peer-checked:text-white peer-checked:border-pop-pink peer-focus-visible:ring-4 peer-focus-visible:ring-rose-200 transition-colors">その他</span></label>
             </div>
           </div>
 
           <div class="field">
             <label for="f-message" class="block text-xs font-bold text-slate-700 mb-2">お問い合わせ内容 <span class="text-pop-pink">*</span></label>
-            <textarea id="f-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white"></textarea>
-            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">お問い合わせ内容を入力してください</p>
+            <textarea id="f-message" name="message" rows="5" required minlength="10" maxlength="3000" placeholder="お問い合わせ内容をご記入ください" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white"></textarea>
+            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">お問い合わせ内容を10文字以上でご記入ください（URLは2件まで）</p>
           </div>
 
-          <p class="text-[11px] text-slate-500 text-center">
-            送信により<button type="button" class="open-privacy underline font-bold text-pop-blue hover:text-pop-indigo">プライバシーポリシー</button>に同意したものとみなします。
-          </p>
+          <div class="field space-y-3 rounded-2xl bg-slate-50 border border-slate-200 p-4">
+            <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-700 font-jp leading-relaxed">
+              <input id="f-not-sales" name="not_sales" type="checkbox" required value="はい" class="mt-0.5 w-4 h-4 accent-pop-blue shrink-0">
+              <span>営業・勧誘・広告を目的としたお問い合わせではありません <span class="text-pop-pink">*</span></span>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-700 font-jp leading-relaxed">
+              <input id="f-privacy" name="privacy_agreed" type="checkbox" required value="同意" class="mt-0.5 w-4 h-4 accent-pop-blue shrink-0">
+              <span><button type="button" class="open-privacy underline font-bold text-pop-blue hover:text-pop-indigo">プライバシーポリシー</button>に同意します <span class="text-pop-pink">*</span></span>
+            </label>
+            <p class="field-error text-[11px] font-bold text-pop-pink">上記の項目にチェックしてください</p>
+          </div>
+
+          <div class="flex flex-col items-center gap-2">
+            <!-- hCaptcha（Web3Forms 無料プラン用の共有サイトキー） -->
+            <div class="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
+            <p id="captcha-error" class="hidden text-[11px] font-bold text-pop-pink">「私はロボットではありません」の確認を完了してください</p>
+          </div>
+
+          <p id="form-error" class="hidden text-center text-xs font-bold text-pop-pink" role="alert"></p>
 
           <div class="text-center">
             <button id="submit-btn" type="submit" class="group relative w-full sm:w-auto min-w-[240px] px-8 py-4 rounded-2xl bg-grad text-white text-sm font-bold tracking-wider shadow-lg shadow-pop-blue/25 hover:shadow-xl hover:shadow-pop-indigo/30 hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-70 disabled:pointer-events-none">
@@ -808,6 +838,7 @@
         <div>
           <h4 class="font-bold text-slate-900 mb-1">3. 第三者への開示・提供の禁止</h4>
           <p>当社は、法令に基づき開示することが必要である場合を除き、ご本人の同意なく個人情報を第三者に開示・提供いたしません。</p>
+          <p class="mt-2">なお、お問い合わせフォームの送信処理には外部サービス「Web3Forms」を、不正送信の防止には「hCaptcha」を利用しており、ご入力内容はこれらのサービスを経由して当社に届きます。</p>
         </div>
         <div>
           <h4 class="font-bold text-slate-900 mb-1">4. 安全管理措置</h4>
@@ -908,23 +939,43 @@
       });
     }
 
-    // 6. Contact form
+    // 6. Contact form — Web3Forms → info@kbt-inc.jp
     const form = $('#contact-form');
     const success = $('#form-success');
     const wrap = $('#form-wrap');
     const btn = $('#submit-btn');
-    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const formError = $('#form-error');
+    const captchaError = $('#captcha-error');
+    const ENDPOINT = 'https://api.web3forms.com/submit';
+    const loadedAt = Date.now();
+    const COOLDOWN_MS = 60 * 1000;
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    const urlCount = (v) => (v.match(/https?:\/\/|www\./gi) || []).length;
 
     const validate = (input) => {
       const v = input.value.trim();
-      const ok = input.type === 'email' ? emailOk(v) : v !== '';
-      input.closest('.field').classList.toggle('is-invalid', !ok);
+      let ok;
+      if (input.type === 'checkbox') ok = input.checked;
+      else if (input.type === 'email') ok = emailOk(v);
+      else if (input.name === 'message') ok = v.length >= 10 && urlCount(v) <= 2;
+      else ok = v !== '';
+      const field = input.closest('.field');
+      if (input.type === 'checkbox') {
+        field.classList.toggle('is-invalid', !$$('input[type=checkbox][required]', field).every((c) => c.checked));
+      } else {
+        field.classList.toggle('is-invalid', !ok);
+      }
       return ok;
     };
     $$('[required]', form).forEach((el) => {
-      el.addEventListener('blur', () => { if (el.value) validate(el); });
+      el.addEventListener('blur', () => { if (el.type !== 'checkbox' && el.value) validate(el); });
       el.addEventListener('input', () => { if (el.closest('.field').classList.contains('is-invalid')) validate(el); });
+      el.addEventListener('change', () => { if (el.type === 'checkbox') validate(el); });
     });
+
+    const showError = (msg) => { formError.textContent = msg; formError.classList.remove('hidden'); };
+    const clearError = () => { formError.textContent = ''; formError.classList.add('hidden'); captchaError.classList.add('hidden'); };
+    const resetCaptcha = () => { if (window.hcaptcha) { try { hcaptcha.reset(); } catch (_) {} } };
 
     const confetti = () => {
       if (reduce) return;
@@ -945,34 +996,64 @@
       }
     };
 
-    form.addEventListener('submit', (e) => {
+    const showSuccess = () => {
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+      const mark = $('.pop-in', success);
+      mark.style.animation = 'none';
+      void success.offsetWidth;
+      mark.style.animation = '';
+      confetti();
+      form.reset();
+      resetCaptcha();
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      clearError();
+
+      // Honeypot: 人間には見えない欄にチェックがあれば bot → 成功したふりをして何も送らない
+      if (form.botcheck.checked) { showSuccess(); return; }
+
       const invalid = $$('[required]', form).filter((el) => !validate(el));
       if (invalid.length) { invalid[0].focus(); return; }
 
+      // ページを開いてから極端に早い送信は自動入力とみなす
+      if (Date.now() - loadedAt < 4000) { showError('入力内容をご確認のうえ、もう一度送信してください。'); return; }
+
+      // 連続送信の防止（同じブラウザから60秒以内）
+      let last = 0;
+      try { last = Number(localStorage.getItem('kbt_contact_sent_at')) || 0; } catch (_) {}
+      if (Date.now() - last < COOLDOWN_MS) { showError('先ほど送信済みです。しばらく時間をおいてから再度お試しください。'); return; }
+
+      const key = form.access_key.value;
+      if (!key || key.startsWith('YOUR_')) {
+        showError('現在フォームの準備中です。恐れ入りますが時間をおいて再度お試しください。');
+        console.warn('Web3Forms access key is not set.');
+        return;
+      }
+
+      const token = form.querySelector('[name="h-captcha-response"]')?.value;
+      if (!token) { captchaError.classList.remove('hidden'); return; }
+
+      const topic = form.querySelector('[name="topic"]:checked')?.value || 'その他';
+      form.subject.value = `【KBT お問い合わせ】${topic} - ${form.elements.name.value.trim()}様`;
+
       btn.disabled = true;
       $('.btn-label', btn).textContent = '送信中…';
-
-      // 実際に送信する場合は form に data-endpoint="https://formspree.io/f/xxxx" を指定
-      const endpoint = form.dataset.endpoint;
-      const send = endpoint
-        ? fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }).then((r) => { if (!r.ok) throw new Error(); })
-        : new Promise((r) => setTimeout(r, 800));
-
-      send.then(() => {
-        form.classList.add('hidden');
-        success.classList.remove('hidden');
-        $('.pop-in', success).style.animation = 'none';
-        void success.offsetWidth;
-        $('.pop-in', success).style.animation = '';
-        confetti();
-        form.reset();
-      }).catch(() => {
-        alert('送信に失敗しました。時間をおいて再度お試しください。');
-      }).finally(() => {
+      try {
+        const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) throw new Error(data.message || 'send failed');
+        try { localStorage.setItem('kbt_contact_sent_at', String(Date.now())); } catch (_) {}
+        showSuccess();
+      } catch (err) {
+        showError('送信に失敗しました。お手数ですが時間をおいて再度お試しください。');
+        resetCaptcha();
+      } finally {
         btn.disabled = false;
-        $('.btn-label', btn).innerHTML = '送信する <span class="transition-transform group-hover:translate-x-1">→</span>';
-      });
+        $('.btn-label', btn).textContent = '送信する →';
+      }
     });
 
     $('#form-again').addEventListener('click', () => {
@@ -1006,5 +1087,6 @@
     });
   })();
   </script>
+  <script src="https://js.hcaptcha.com/1/api.js?hl=ja" async defer></script>
 </body>
 </html>

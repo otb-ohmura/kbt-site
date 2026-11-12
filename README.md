@@ -23,5 +23,19 @@ assets/img/favicon.svg
 
 ## お問い合わせフォーム
 
-デフォルトでは送信演出のみ（データはどこにも送信されません）。
-実際に受信するには Formspree 等のエンドポイントを `<form id="contactForm" data-endpoint="https://formspree.io/f/XXXX">` のように指定してください。
+[Web3Forms](https://web3forms.com) 経由で info@kbt-inc.jp に届きます（`index.html` と `pop/index.html` の両方）。
+
+### 設定手順
+1. https://web3forms.com で `info@kbt-inc.jp` を入力し、Access Key を発行（同アドレスにキーが届く）
+2. 各フォームの `<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">` をそのキーに置き換える（キーは公開前提の値なので HTML に書いてよい）
+3. Web3Forms のダッシュボードでスパム対策に hCaptcha を有効化（有効化しないとサーバー側で検証されない）
+
+キー未設定のままだと「準備中」と表示され、送信は行われません。
+
+### スパム・営業対策
+- hCaptcha（人間確認）
+- ハニーポット欄 `botcheck`（bot が埋めたら送信したふりをして破棄）
+- ページ表示から4秒未満の送信を拒否 / 同一ブラウザから60秒以内の連続送信を拒否
+- 本文10文字以上・URL 2件まで、各欄に文字数上限
+- 「営業目的ではありません」チェック必須、営業・AIエージェントお断りの明記
+- 件名は `【KBT お問い合わせ】種別 - お名前様` 形式（メールの振り分けに利用可）
