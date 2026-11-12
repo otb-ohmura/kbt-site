@@ -746,12 +746,6 @@
             <p class="field-error text-[11px] font-bold text-pop-pink">上記の項目にチェックしてください</p>
           </div>
 
-          <div class="flex flex-col items-center gap-2">
-            <!-- hCaptcha（Web3Forms 無料プラン用の共有サイトキー） -->
-            <div class="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
-            <p id="captcha-error" class="hidden text-[11px] font-bold text-pop-pink">「私はロボットではありません」の確認を完了してください</p>
-          </div>
-
           <p id="form-error" class="hidden text-center text-xs font-bold text-pop-pink" role="alert"></p>
 
           <div class="text-center">
@@ -838,7 +832,7 @@
         <div>
           <h4 class="font-bold text-slate-900 mb-1">3. 第三者への開示・提供の禁止</h4>
           <p>当社は、法令に基づき開示することが必要である場合を除き、ご本人の同意なく個人情報を第三者に開示・提供いたしません。</p>
-          <p class="mt-2">なお、お問い合わせフォームの送信処理には外部サービス「Web3Forms」を、不正送信の防止には「hCaptcha」を利用しており、ご入力内容はこれらのサービスを経由して当社に届きます。</p>
+          <p class="mt-2">なお、お問い合わせフォームの送信処理には外部サービス「Web3Forms」を利用しており、ご入力内容は同サービスを経由して当社に届きます。</p>
         </div>
         <div>
           <h4 class="font-bold text-slate-900 mb-1">4. 安全管理措置</h4>
@@ -945,7 +939,6 @@
     const wrap = $('#form-wrap');
     const btn = $('#submit-btn');
     const formError = $('#form-error');
-    const captchaError = $('#captcha-error');
     const ENDPOINT = 'https://api.web3forms.com/submit';
     const loadedAt = Date.now();
     const COOLDOWN_MS = 60 * 1000;
@@ -974,8 +967,7 @@
     });
 
     const showError = (msg) => { formError.textContent = msg; formError.classList.remove('hidden'); };
-    const clearError = () => { formError.textContent = ''; formError.classList.add('hidden'); captchaError.classList.add('hidden'); };
-    const resetCaptcha = () => { if (window.hcaptcha) { try { hcaptcha.reset(); } catch (_) {} } };
+    const clearError = () => { formError.textContent = ''; formError.classList.add('hidden'); };
 
     const confetti = () => {
       if (reduce) return;
@@ -1005,7 +997,6 @@
       mark.style.animation = '';
       confetti();
       form.reset();
-      resetCaptcha();
     };
 
     form.addEventListener('submit', async (e) => {
@@ -1033,8 +1024,6 @@
         return;
       }
 
-      const token = form.querySelector('[name="h-captcha-response"]')?.value;
-      if (!token) { captchaError.classList.remove('hidden'); return; }
 
       const topic = form.querySelector('[name="topic"]:checked')?.value || 'その他';
       form.subject.value = `【KBT お問い合わせ】${topic} - ${form.elements.name.value.trim()}様`;
@@ -1049,7 +1038,6 @@
         showSuccess();
       } catch (err) {
         showError('送信に失敗しました。お手数ですが時間をおいて再度お試しください。');
-        resetCaptcha();
       } finally {
         btn.disabled = false;
         $('.btn-label', btn).textContent = '送信する →';
@@ -1087,6 +1075,5 @@
     });
   })();
   </script>
-  <script src="https://js.hcaptcha.com/1/api.js?hl=ja" async defer></script>
 </body>
 </html>
