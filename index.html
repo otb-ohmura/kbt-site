@@ -56,16 +56,18 @@
     h1, h2, h3, h1.font-jp, h2.font-jp, h3.font-jp { font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif; }
 
     /* ---------- 言語ごとのフォント ---------- */
-    html[lang="en"], html[lang="vi"] { --f-body: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; --f-head: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; }
+    html[lang="en"], html[lang="vi"], html[lang="es"], html[lang="fr"] { --f-body: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; --f-head: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; }
     html[lang="ko"] { --f-body: 'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; --f-head: var(--f-body); }
     html[lang="zh-Hans"] { --f-body: 'Plus Jakarta Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; --f-head: var(--f-body); }
     html[lang="zh-Hant"] { --f-body: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif; --f-head: var(--f-body); }
+    html[lang="th"] { --f-body: 'Plus Jakarta Sans', 'Thonburi', 'Leelawadee UI', 'Noto Sans Thai', Tahoma, sans-serif; --f-head: var(--f-body); }
     html[lang="ar"] { --f-body: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', Tahoma, sans-serif; --f-head: var(--f-body); }
     html:not([lang="ja"]) body, html:not([lang="ja"]) .font-jp { font-family: var(--f-body); }
     html:not([lang="ja"]) h1, html:not([lang="ja"]) h2, html:not([lang="ja"]) h3 { font-family: var(--f-head); }
     html:not([lang="ja"]) h1 { letter-spacing: -0.01em; }
     /* アラビア語は文字が連結するので字間を空けない */
-    html[lang="ar"] body * { letter-spacing: 0 !important; }
+    html[lang="ar"] body *, html[lang="th"] body * { letter-spacing: 0 !important; }
+    html[lang="th"] h1, html[lang="th"] h2, html[lang="th"] h3 { line-height: 1.5; }
     html[lang="ar"] h1, html[lang="ar"] h2 { line-height: 1.5; }
 
     /* ---------- 右から左（アラビア語） ---------- */
@@ -266,7 +268,10 @@
             <li><button type="button" role="menuitemradio" data-lang="zh-Hans" lang="zh-Hans" class="lang-opt">简体中文</button></li>
             <li><button type="button" role="menuitemradio" data-lang="zh-Hant" lang="zh-Hant" class="lang-opt">繁體中文</button></li>
             <li><button type="button" role="menuitemradio" data-lang="ko" lang="ko" class="lang-opt">한국어</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="th" lang="th" class="lang-opt">ไทย</button></li>
             <li><button type="button" role="menuitemradio" data-lang="vi" lang="vi" class="lang-opt">Tiếng Việt</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="es" lang="es" class="lang-opt">Español</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="fr" lang="fr" class="lang-opt">Français</button></li>
             <li><button type="button" role="menuitemradio" data-lang="ar" lang="ar" dir="rtl" class="lang-opt">العربية</button></li>
           </ul>
         </div>
@@ -912,8 +917,8 @@
 
     // 0. i18n — 翻訳文は i18n.js（window.KBT_I18N）。日本語はページ本体の文言をそのまま使う
     const I18N = window.KBT_I18N || {};
-    const LANGS = ['ja', 'en', 'zh-Hans', 'zh-Hant', 'ko', 'vi', 'ar'];
-    const LABELS = { ja: ['JA', '日本語'], en: ['EN', 'English'], 'zh-Hans': ['简', '简体中文'], 'zh-Hant': ['繁', '繁體中文'], ko: ['KO', '한국어'], vi: ['VI', 'Tiếng Việt'], ar: ['AR', 'العربية'] };
+    const LANGS = ['ja', 'en', 'zh-Hans', 'zh-Hant', 'ko', 'th', 'vi', 'es', 'fr', 'ar'];
+    const LABELS = { ja: ['JA', '日本語'], en: ['EN', 'English'], 'zh-Hans': ['简', '简体中文'], 'zh-Hant': ['繁', '繁體中文'], ko: ['KO', '한국어'], th: ['TH', 'ไทย'], vi: ['VI', 'Tiếng Việt'], es: ['ES', 'Español'], fr: ['FR', 'Français'], ar: ['AR', 'العربية'] };
     const original = new Map();
     $$('[data-i18n]').forEach((el) => original.set(el, el.innerHTML));
     $$('[data-i18n-ph]').forEach((el) => original.set(el, el.placeholder));
@@ -932,7 +937,10 @@
         if (v.startsWith('ja')) return 'ja';
         if (v.startsWith('zh')) return /hant|tw|hk|mo/.test(v) ? 'zh-Hant' : 'zh-Hans';
         if (v.startsWith('ko')) return 'ko';
+        if (v.startsWith('th')) return 'th';
         if (v.startsWith('vi')) return 'vi';
+        if (v.startsWith('es')) return 'es';
+        if (v.startsWith('fr')) return 'fr';
         if (v.startsWith('ar')) return 'ar';
         if (v.startsWith('en')) return 'en';
       }
