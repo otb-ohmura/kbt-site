@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script>
@@ -32,8 +32,11 @@
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '"Zen Kaku Gothic New"', 'sans-serif'],
-            jp: ['"Zen Kaku Gothic New"', 'sans-serif'],
+            // 本文: Mac/iPhone はヒラギノ、それ以外は BIZ UDPゴシック（小さい文字でも読みやすい）
+            sans: ['"Plus Jakarta Sans"', '"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"BIZ UDPGothic"', '"Yu Gothic"', 'Meiryo', 'sans-serif'],
+            jp: ['"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"BIZ UDPGothic"', '"Yu Gothic"', 'Meiryo', 'sans-serif'],
+            // 見出し: 丸ゴシックで親しみやすく
+            round: ['"M PLUS Rounded 1c"', '"Hiragino Maru Gothic ProN"', '"Hiragino Sans"', 'sans-serif'],
           }
         }
       }
@@ -44,12 +47,13 @@
     :root { --grad: linear-gradient(120deg, #0EA5E9 0%, #4F46E5 55%, #F43F5E 100%); }
     html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body {
-      font-family: 'Plus Jakarta Sans', 'Zen Kaku Gothic New', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'BIZ UDPGothic', 'Yu Gothic', Meiryo, sans-serif;
       background-color: #F8FAFC;
       color: #0F172A;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
     }
+    /* 見出しは丸ゴシック */
+    h1, h2, h3, h1.font-jp, h2.font-jp, h3.font-jp { font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif; }
     body.is-locked { overflow: hidden; }
 
     .text-grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
