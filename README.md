@@ -1,7 +1,7 @@
 # KBT Inc. Corporate Site
 
 KBT株式会社（KBT Inc.）の公式コーポレートサイト。
-静的構成（HTML5 + Tailwind CSS CDN + GSAP/ScrollTrigger + Lenis + Canvas）で、すべて相対パスのため GitHub Pages のルート／サブディレクトリどちらでも動作します。
+`index.html` 1ファイルの静的サイト（HTML + Tailwind CSS CDN + Vanilla JS）。GitHub Pages のルート／サブディレクトリどちらでも動作します。
 
 ## ローカル確認
 
@@ -11,23 +11,13 @@ python3 -m http.server 8123
 
 ブラウザで http://127.0.0.1:8123/ を開きます。
 
-## 構成
-
-```
-index.html
-assets/css/style.css
-assets/js/main.js
-assets/img/favicon.svg
-.nojekyll
-```
-
 ## お問い合わせフォーム
 
-[Web3Forms](https://web3forms.com) 経由で info@kbt-inc.jp に届きます（`index.html` と `pop/index.html` の両方）。
+[Web3Forms](https://web3forms.com) 経由で info@kbt-inc.jp に届きます。
 
 ### 設定手順
 1. https://web3forms.com で `info@kbt-inc.jp` を入力し、Access Key を発行（同アドレスにキーが届く）
-2. 各フォームの `<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">` をそのキーに置き換える（キーは公開前提の値なので HTML に書いてよい）
+2. `index.html` の `<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">` をそのキーに置き換える（キーは公開前提の値なので HTML に書いてよい）
 3. Web3Forms のダッシュボードでスパム対策に hCaptcha を有効化（有効化しないとサーバー側で検証されない）
 
 キー未設定のままだと「準備中」と表示され、送信は行われません。
