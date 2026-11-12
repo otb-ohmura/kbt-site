@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://otb-ohmura.github.io/kbt-site/sitemap.xml

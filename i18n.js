@@ -729,4 +729,19 @@
       )
     }
   };
+
+  // ブラウザの言語に合うページを案内するバーの文言（その言語自身で表示する）
+  var BANNER = {
+    ja: '日本語で見る',
+    en: 'View this site in English',
+    'zh-Hans': '查看简体中文版',
+    'zh-Hant': '查看繁體中文版',
+    ko: '한국어로 보기',
+    th: 'ดูเว็บไซต์ภาษาไทย',
+    vi: 'Xem bằng tiếng Việt',
+    es: 'Ver en español',
+    fr: 'Voir en français',
+    ar: 'عرض الموقع بالعربية'
+  };
+  Object.keys(BANNER).forEach(function (k) { window.KBT_I18N[k].banner = BANNER[k]; });
 })();

@@ -1,41 +1,53 @@
 # KBT Inc. Corporate Site
 
-KBT株式会社（KBT Inc.）の公式コーポレートサイト。
-`index.html` 1ファイルの静的サイト（HTML + Tailwind CSS CDN + Vanilla JS）。GitHub Pages のルート／サブディレクトリどちらでも動作します。
+KBT株式会社（KBT Inc.）の公式コーポレートサイト。静的サイト（HTML + Tailwind CSS CDN + Vanilla JS）で、GitHub Pages で公開しています。
 
-## ローカル確認
+## 構成
 
-```bash
-python3 -m http.server 8123
+```
+src/template.html     … 日本語の元原稿（デザイン・文言・スクリプト）← 日本語や見た目はここを編集
+i18n.js               … 各言語の翻訳                                ← 他言語の文言はここを編集
+tools/build.py        … 言語別ページの生成スクリプト
+tools/extract_i18n.jxa.js … （Node が無い Mac 用）翻訳ファイルの読み取り補助
+
+index.html            … 日本語ページ        ┐
+en/ zh-hans/ zh-hant/ ko/ th/ vi/ es/ fr/ ar/ │ build.py が自動生成。直接編集しない
+sitemap.xml, robots.txt                      ┘
 ```
 
-ブラウザで http://127.0.0.1:8123/ を開きます。
+## 文言・デザインを変えたら
 
-## 多言語対応
+```bash
+python3 tools/build.py
+```
 
-日本語 / English / 简体中文 / 繁體中文 / 한국어 / ไทย / Tiếng Việt / Español / Français / العربية（右から左表示）の10言語。
+を実行すると、10言語のページと sitemap が作り直されます。生成後にコミット・プッシュすれば公開に反映されます。
+（Node.js があれば Node、無ければ macOS 標準の JavaScript 実行環境で翻訳ファイルを読み取ります）
 
-- 日本語の文言は `index.html` 本体、他言語は `i18n.js` にあります。翻訳対象の要素には `data-i18n="キー"` が付いています。
-- 表示言語は「URLの `?lang=en` など → 前回選んだ言語 → ブラウザの言語設定」の順で決まり、対応外の言語なら英語になります。
-- 問い合わせメールの件名末尾に、送信者が見ていた言語が `[English]` のように付きます。
-- 翻訳は機械的な下訳です。公開前・公開後にネイティブチェックを推奨（特にアラビア語、プライバシーポリシー）。
+## ドメインを変えるとき
+
+1. `tools/build.py` の `BASE_URL` を新しいURL（例 `https://kbt-inc.jp/`）に変更して `python3 tools/build.py`
+2. GitHub リポジトリの Settings → Pages → Custom domain に登録し、DNS を設定
+   （github.io 側の URL は GitHub が新ドメインへ自動転送します）
+
+## 多言語の仕組み
+
+- 日本語 `/`、英語 `/en/`、簡体字 `/zh-hans/`、繁体字 `/zh-hant/`、韓国語 `/ko/`、タイ語 `/th/`、ベトナム語 `/vi/`、スペイン語 `/es/`、フランス語 `/fr/`、アラビア語 `/ar/`（右から左表示）
+- 各ページは翻訳済みのHTMLとして配信され、canonical / hreflang / 言語別の OGP（SNSプレビュー）を備えます。
+- ブラウザの言語に合うページがあれば、自動で飛ばさずにヘッダー下に案内バーを表示します。
+- 旧URL（`?lang=en` など）でのアクセスは該当ページへ転送します。
+- 翻訳対象の要素には `data-i18n="キー"` が付いています。新しい文言を足すときは、テンプレートに `data-i18n` を付け、`i18n.js` の各言語に同じキーを追加してください。
 
 ## お問い合わせフォーム
 
-[Web3Forms](https://web3forms.com) 経由で info@kbt-inc.jp に届きます。
+[Web3Forms](https://web3forms.com) 経由で info@kbt-inc.jp に届きます。件名は `【KBT お問い合わせ】種別 - お名前様 [表示言語]` 形式です。
 
-### 設定手順
-1. https://web3forms.com で `info@kbt-inc.jp` を入力し、Access Key を発行（同アドレスにキーが届く）
-2. `index.html` の `<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">` をそのキーに置き換える（キーは公開前提の値なので HTML に書いてよい）
-3. Web3Forms のダッシュボードで hCaptcha は **オフ** にしておく（問題が難しく実用的でないため不採用。オンだと全送信が拒否される）
-
-キー未設定のままだと「準備中」と表示され、送信は行われません。
+- Access Key は `src/template.html` の `access_key` 欄（公開前提の値なので HTML に書いてよい）
+- Web3Forms のダッシュボードで hCaptcha は **オフ**（オンだと全送信が拒否される）
 
 ### スパム・営業対策
-- Web3Forms 側の標準スパムフィルタ（全送信に自動適用）
-- 無料プランはブラウザ以外（サーバー・スクリプト）からの直接送信を受け付けない
+- Web3Forms 側の標準スパムフィルタ / 無料プランはブラウザ以外からの直接送信を受け付けない
 - ハニーポット欄 `botcheck`（bot が埋めたら送信したふりをして破棄）
 - ページ表示から4秒未満の送信を拒否 / 同一ブラウザから60秒以内の連続送信を拒否
 - 本文10文字以上・URL 2件まで、各欄に文字数上限
 - 「営業目的ではありません」チェック必須、営業・AIエージェントお断りの明記
-- 件名は `【KBT お問い合わせ】種別 - お名前様` 形式（メールの振り分けに利用可）

@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<!-- このファイルは tools/build.py が src/template.html と i18n.js から自動生成しています。直接編集しないでください。 -->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KBT Inc. — Mang văn hóa đại chúng Nhật Bản ra thế giới</title>
+  <meta name="description" content="KBT Inc. tuyển chọn văn hóa Nhật Bản — từ thời trang, sneaker đến sản phẩm từ IP Nhật Bản — và mang đến người hâm mộ toàn cầu." />
+  <meta name="theme-color" content="#0EA5E9" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta property="og:title" content="KBT Inc. — Mang văn hóa đại chúng Nhật Bản ra thế giới" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230EA5E9'/%3E%3Cstop offset='.55' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%23F43F5E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M14 44c0-11 8-18 18-18s18 7 18 18z' fill='white'/%3E%3Cpath d='M32 34C25 28 15 21 10 6M32 34c7-6 17-13 22-28' stroke='%23FDE047' stroke-width='4.5' fill='none' stroke-linecap='round'/%3E%3Crect x='10' y='44' width='44' height='7' rx='3.5' fill='white'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.5"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pop: {
+              blue: '#0EA5E9',
+              indigo: '#4F46E5',
+              pink: '#F43F5E',
+              cyan: '#06B6D4',
+              yellow: '#FACC15',
+              bg: '#F8FAFC',
+              dark: '#0F172A',
+            }
+          },
+          fontFamily: {
+            // 本文: Mac/iPhone はヒラギノ、それ以外は BIZ UDPゴシック（小さい文字でも読みやすい）
+            sans: ['"Plus Jakarta Sans"', '"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"BIZ UDPGothic"', '"Yu Gothic"', 'Meiryo', 'sans-serif'],
+            jp: ['"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"BIZ UDPGothic"', '"Yu Gothic"', 'Meiryo', 'sans-serif'],
+            // 見出し: 丸ゴシックで親しみやすく
+            round: ['"M PLUS Rounded 1c"', '"Hiragino Maru Gothic ProN"', '"Hiragino Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { --grad: linear-gradient(120deg, #0EA5E9 0%, #4F46E5 55%, #F43F5E 100%); }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'BIZ UDPGothic', 'Yu Gothic', Meiryo, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
+    /* 見出しは丸ゴシック */
+    h1, h2, h3, h1.font-jp, h2.font-jp, h3.font-jp { font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif; }
+
+    /* ---------- 言語ごとのフォント ---------- */
+    html[lang="en"], html[lang="vi"], html[lang="es"], html[lang="fr"] { --f-body: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; --f-head: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; }
+    html[lang="ko"] { --f-body: 'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; --f-head: var(--f-body); }
+    html[lang="zh-Hans"] { --f-body: 'Plus Jakarta Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; --f-head: var(--f-body); }
+    html[lang="zh-Hant"] { --f-body: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif; --f-head: var(--f-body); }
+    html[lang="th"] { --f-body: 'Plus Jakarta Sans', 'Thonburi', 'Leelawadee UI', 'Noto Sans Thai', Tahoma, sans-serif; --f-head: var(--f-body); }
+    html[lang="ar"] { --f-body: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', Tahoma, sans-serif; --f-head: var(--f-body); }
+    html:not([lang="ja"]) body, html:not([lang="ja"]) .font-jp { font-family: var(--f-body); }
+    html:not([lang="ja"]) h1, html:not([lang="ja"]) h2, html:not([lang="ja"]) h3 { font-family: var(--f-head); }
+    html:not([lang="ja"]) h1 { letter-spacing: -0.01em; }
+    /* アラビア語は文字が連結するので字間を空けない */
+    html[lang="ar"] body *, html[lang="th"] body * { letter-spacing: 0 !important; }
+    html[lang="th"] h1, html[lang="th"] h2, html[lang="th"] h3 { line-height: 1.5; }
+    html[lang="ar"] h1, html[lang="ar"] h2 { line-height: 1.5; }
+
+    /* ---------- 右から左（アラビア語） ---------- */
+    [dir="rtl"] .dir-arrow { display: inline-block; transform: scaleX(-1); }
+    [dir="rtl"] .group:hover .dir-arrow { transform: scaleX(-1) translateX(4px); }
+    [dir="rtl"] .flow-line { left: calc(-50% + 40px) !important; right: calc(50% + 40px) !important; }
+
+    /* ---------- 言語メニュー ---------- */
+    .lang-opt { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 700; color: #334155; text-align: start; }
+    .lang-opt:hover, .lang-opt:focus-visible { background: #F0F9FF; color: #0EA5E9; outline: none; }
+    .lang-opt[aria-checked="true"] { color: #0EA5E9; }
+    .lang-opt[aria-checked="true"]::after { content: "✓"; font-size: 12px; }
+    body.is-locked { overflow: hidden; }
+
+    .text-grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .bg-grad { background: var(--grad); }
+
+    /* ---------- Backgrounds ---------- */
+    .bg-dot-pattern {
+      background-image: radial-gradient(#CBD5E1 1.25px, transparent 1.25px);
+      background-size: 24px 24px;
+    }
+    .bg-seigaiha {
+      background-color: #ffffff;
+      background-image: radial-gradient(circle at 100% 150%, #F1F5F9 24%, #ffffff 25%, #ffffff 28%, #F1F5F9 29%, #F1F5F9 36%, #ffffff 36%, #ffffff 40%, transparent 40%, transparent),
+                        radial-gradient(circle at 0    150%, #F1F5F9 24%, #ffffff 25%, #ffffff 28%, #F1F5F9 29%, #F1F5F9 36%, #ffffff 36%, #ffffff 40%, transparent 40%, transparent),
+                        radial-gradient(circle at 50%  100%, #ffffff 10%, #F1F5F9 11%, #F1F5F9 23%, #ffffff 24%, #ffffff 30%, #F1F5F9 31%, #F1F5F9 43%, #ffffff 44%, #ffffff 50%, #F1F5F9 51%, #F1F5F9 63%, #ffffff 64%, #ffffff 71%, transparent 71%, transparent),
+                        radial-gradient(circle at 100% 50%, #ffffff 5%, #F1F5F9 6%, #F1F5F9 15%, #ffffff 16%, #ffffff 20%, #F1F5F9 21%, #F1F5F9 30%, #ffffff 31%, #ffffff 35%, #F1F5F9 36%, #F1F5F9 45%, #ffffff 46%, #ffffff 49%, transparent 50%, transparent),
+                        radial-gradient(circle at 0    50%, #ffffff 5%, #F1F5F9 6%, #F1F5F9 15%, #ffffff 16%, #ffffff 20%, #F1F5F9 21%, #F1F5F9 30%, #ffffff 31%, #ffffff 35%, #F1F5F9 36%, #F1F5F9 45%, #ffffff 46%, #ffffff 49%, transparent 50%, transparent);
+      background-size: 60px 30px;
+    }
+
+    /* ---------- Header ---------- */
+    #site-header { transition: box-shadow .3s, background-color .3s; }
+    #site-header.is-scrolled { box-shadow: 0 8px 30px -12px rgba(15, 23, 42, .15); background-color: rgba(255,255,255,.92); }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ""; position: absolute; left: 50%; bottom: -8px; width: 6px; height: 6px; border-radius: 9999px;
+      background: #0EA5E9; transform: translateX(-50%) scale(0); transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .nav-link:hover::after, .nav-link.is-active::after { transform: translateX(-50%) scale(1); }
+    .nav-link.is-active { color: #0F172A; }
+    #progress { transform-origin: left; transform: scaleX(0); }
+
+    /* ---------- Waves ---------- */
+    .wave-parallax > use { animation: move-wave 20s cubic-bezier(.55,.5,.45,.5) infinite; }
+    .wave-parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 9s; }
+    .wave-parallax > use:nth-child(2) { animation-delay: -4s; animation-duration: 14s; }
+    .wave-parallax > use:nth-child(3) { animation-delay: -6s; animation-duration: 20s; }
+    @keyframes move-wave { 0% { transform: translate3d(-90px,0,0); } 100% { transform: translate3d(85px,0,0); } }
+
+    /* ---------- Floating ---------- */
+    @keyframes float-slow { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(2deg); } }
+    @keyframes float-reverse { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(10px) rotate(-2deg); } }
+    .animate-float { animation: float-slow 5s ease-in-out infinite; }
+    .animate-float-reverse { animation: float-reverse 6s ease-in-out infinite; }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    .animate-spin-slow { animation: spin-slow 40s linear infinite; }
+    @keyframes twinkle { 0%,100% { transform: scale(.6); opacity: .3; } 50% { transform: scale(1); opacity: 1; } }
+    .sparkle { animation: twinkle 2.4s ease-in-out infinite; }
+
+    /* ---------- Holo trading card ---------- */
+    .holo-stage { perspective: 1000px; }
+    .holo-card {
+      --rx: 0deg; --ry: 0deg; --px: 50%; --py: 50%; --o: 0;
+      transform: rotateX(var(--rx)) rotateY(var(--ry));
+      transform-style: preserve-3d;
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+      will-change: transform;
+    }
+    .holo-card.is-tilting { transition: transform .08s linear; }
+    .holo-shine {
+      position: absolute; inset: 0; border-radius: inherit; pointer-events: none; mix-blend-mode: color-dodge;
+      background:
+        radial-gradient(circle at var(--px) var(--py), rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 45%),
+        repeating-linear-gradient(115deg, rgba(14,165,233,.0) 0%, rgba(14,165,233,.35) 6%, rgba(250,204,21,.35) 12%, rgba(244,63,94,.35) 18%, rgba(79,70,229,.0) 24%);
+      background-size: 100% 100%, 250% 250%;
+      background-position: center, var(--px) var(--py);
+      opacity: var(--o);
+      transition: opacity .4s;
+    }
+    .holo-card.idle-shine .holo-shine { animation: idle-shine 6s ease-in-out infinite; }
+    @keyframes idle-shine { 0%,100% { opacity: .15; background-position: center, 0% 0%; } 50% { opacity: .45; background-position: center, 100% 100%; } }
+
+    /* ---------- Marquee (seamless) ---------- */
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+
+    /* ---------- Reveal ---------- */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); transition-delay: var(--d, 0s); }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .no-js .fade-up { opacity: 1; transform: none; }
+
+    /* ---------- Service cards (gradient border on hover) ---------- */
+    .svc-card { position: relative; isolation: isolate; }
+    .svc-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 2px; z-index: -1;
+      background: var(--grad);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity .3s;
+    }
+    .svc-card:hover::before { opacity: 1; }
+    .svc-card .svc-icon { transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+    .svc-card:hover .svc-icon { transform: rotate(-8deg) scale(1.1); }
+
+    /* ---------- Flow line ---------- */
+    .flow-line { background-image: linear-gradient(90deg, #CBD5E1 50%, transparent 50%); background-size: 12px 2px; background-repeat: repeat-x; animation: dash 1.2s linear infinite; }
+    @keyframes dash { to { background-position: 12px 0; } }
+
+    /* ---------- Map ---------- */
+    .route { stroke-dasharray: 6 6; animation: route 1.6s linear infinite; }
+    @keyframes route { to { stroke-dashoffset: -24; } }
+    .ping-dot { transform-box: fill-box; transform-origin: center; animation: ping 2s cubic-bezier(0,0,.2,1) infinite; }
+    @keyframes ping { 75%,100% { transform: scale(3); opacity: 0; } }
+
+    /* ---------- Form ---------- */
+    .field-input { transition: border-color .2s, background-color .2s, box-shadow .2s; }
+    .field-input:focus { box-shadow: 0 0 0 4px rgba(14,165,233,.15); }
+    .field.is-invalid .field-input { border-color: #F43F5E; background: #FFF1F2; }
+    .field .field-error { display: none; }
+    .field.is-invalid .field-error { display: block; }
+    @keyframes pop-in { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+    .pop-in { animation: pop-in .6s cubic-bezier(.34,1.56,.64,1) both; }
+    .confetti { position: absolute; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; animation: confetti 1.2s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes confetti { 0% { transform: translate(0,0) rotate(0); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) rotate(var(--r)); opacity: 0; } }
+
+    /* ---------- Modal ---------- */
+    #privacy-modal { transition: opacity .25s; }
+    #privacy-modal.is-open { opacity: 1; }
+    #privacy-modal .modal-panel { transition: transform .35s cubic-bezier(.34,1.56,.64,1); transform: translateY(16px) scale(.97); }
+    #privacy-modal.is-open .modal-panel { transform: none; }
+
+    /* ---------- Mobile menu ---------- */
+    #mobile-menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.22,1,.36,1); }
+    #mobile-menu.is-open { grid-template-rows: 1fr; }
+    #mobile-menu > div { overflow: hidden; }
+    .burger span { transition: transform .3s, opacity .3s; transform-origin: center; }
+    .menu-open .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-open .burger span:nth-child(2) { opacity: 0; }
+    .menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    :focus-visible { outline: 3px solid rgba(14,165,233,.5); outline-offset: 3px; border-radius: 8px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .fade-up { opacity: 1; transform: none; }
+    }
+  </style>
+  <link rel="canonical" href="https://otb-ohmura.github.io/kbt-site/vi/" />
+  <link rel="alternate" hreflang="ja" href="https://otb-ohmura.github.io/kbt-site/" />
+  <link rel="alternate" hreflang="en" href="https://otb-ohmura.github.io/kbt-site/en/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://otb-ohmura.github.io/kbt-site/zh-hans/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://otb-ohmura.github.io/kbt-site/zh-hant/" />
+  <link rel="alternate" hreflang="ko" href="https://otb-ohmura.github.io/kbt-site/ko/" />
+  <link rel="alternate" hreflang="th" href="https://otb-ohmura.github.io/kbt-site/th/" />
+  <link rel="alternate" hreflang="vi" href="https://otb-ohmura.github.io/kbt-site/vi/" />
+  <link rel="alternate" hreflang="es" href="https://otb-ohmura.github.io/kbt-site/es/" />
+  <link rel="alternate" hreflang="fr" href="https://otb-ohmura.github.io/kbt-site/fr/" />
+  <link rel="alternate" hreflang="ar" href="https://otb-ohmura.github.io/kbt-site/ar/" />
+  <link rel="alternate" hreflang="x-default" href="https://otb-ohmura.github.io/kbt-site/en/" />
+  <meta property="og:url" content="https://otb-ohmura.github.io/kbt-site/vi/" />
+  <meta property="og:description" content="KBT Inc. tuyển chọn văn hóa Nhật Bản — từ thời trang, sneaker đến sản phẩm từ IP Nhật Bản — và mang đến người hâm mộ toàn cầu." />
+  <meta property="og:site_name" content="KBT Inc." />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="th_TH" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="ar_AR" />
+  <meta name="twitter:card" content="summary" />
+</head>
+<body class="no-js selection:bg-pop-blue selection:text-white">
+  <script>document.body.classList.remove('no-js');</script>
+
+  <!-- ==========================================
+       HEADER
+  =========================================== -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
+    <div id="progress" class="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-grad"></div>
+    <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3 group" aria-label="KBT株式会社 トップへ">
+        <div class="w-10 h-10 rounded-xl bg-grad flex items-center justify-center text-white shadow-md shadow-pop-blue/20 group-hover:rotate-[-6deg] group-hover:scale-105 transition-transform">
+          <!-- KABUTO icon -->
+          <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M14 44c0-11 8-18 18-18s18 7 18 18z" fill="currentColor"/>
+            <path d="M32 34C25 28 15 21 10 6M32 34c7-6 17-13 22-28" stroke="#FDE047" stroke-width="4.5" stroke-linecap="round"/>
+            <rect x="10" y="44" width="44" height="7" rx="3.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="flex flex-col" dir="ltr">
+          <span class="text-xl font-extrabold tracking-wider text-slate-900 leading-none">KBT</span>
+          <span class="text-[10px] font-bold tracking-widest text-pop-blue mt-0.5">KBT INC.</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 ms-auto me-5 text-sm font-bold text-slate-500" aria-label="メインメニュー">
+        <a href="#about" class="nav-link hover:text-slate-900 transition-colors">ABOUT</a>
+        <a href="#service" class="nav-link hover:text-slate-900 transition-colors">SERVICE</a>
+        <a href="#global" class="nav-link hover:text-slate-900 transition-colors">GLOBAL</a>
+        <a href="#company" class="nav-link hover:text-slate-900 transition-colors">COMPANY</a>
+        <a href="#contact" class="px-5 py-2.5 rounded-full bg-grad text-white text-xs font-bold tracking-wider shadow-md shadow-pop-blue/25 hover:shadow-lg hover:shadow-pop-indigo/30 hover:-translate-y-0.5 transition-all">
+          CONTACT
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div class="relative" id="lang-wrap">
+          <button id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Language" class="flex items-center gap-1.5 h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-pop-blue hover:text-pop-blue transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+            <span id="lang-code" class="sm:hidden">VI</span>
+            <span id="lang-current" class="hidden sm:inline">Tiếng Việt</span>
+            <svg class="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul id="lang-menu" role="menu" class="hidden absolute end-0 mt-2 w-48 py-2 bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 z-50">
+            <li><a href="../" hreflang="ja" role="menuitemradio" data-lang="ja" lang="ja" aria-checked="false" class="lang-opt">日本語</a></li>
+            <li><a href="../en/" hreflang="en" role="menuitemradio" data-lang="en" lang="en" aria-checked="false" class="lang-opt">English</a></li>
+            <li><a href="../zh-hans/" hreflang="zh-Hans" role="menuitemradio" data-lang="zh-Hans" lang="zh-Hans" aria-checked="false" class="lang-opt">简体中文</a></li>
+            <li><a href="../zh-hant/" hreflang="zh-Hant" role="menuitemradio" data-lang="zh-Hant" lang="zh-Hant" aria-checked="false" class="lang-opt">繁體中文</a></li>
+            <li><a href="../ko/" hreflang="ko" role="menuitemradio" data-lang="ko" lang="ko" aria-checked="false" class="lang-opt">한국어</a></li>
+            <li><a href="../th/" hreflang="th" role="menuitemradio" data-lang="th" lang="th" aria-checked="false" class="lang-opt">ไทย</a></li>
+            <li><a href="../vi/" hreflang="vi" role="menuitemradio" data-lang="vi" lang="vi" aria-checked="true" class="lang-opt">Tiếng Việt</a></li>
+            <li><a href="../es/" hreflang="es" role="menuitemradio" data-lang="es" lang="es" aria-checked="false" class="lang-opt">Español</a></li>
+            <li><a href="../fr/" hreflang="fr" role="menuitemradio" data-lang="fr" lang="fr" aria-checked="false" class="lang-opt">Français</a></li>
+            <li><a href="../ar/" hreflang="ar" role="menuitemradio" data-lang="ar" lang="ar" aria-checked="false" dir="rtl" class="lang-opt">العربية</a></li>
+          </ul>
+        </div>
+      <button id="mobile-menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu" class="burger md:hidden w-10 h-10 flex flex-col items-center justify-center gap-[4px] rounded-xl hover:bg-slate-100">
+        <span class="block w-5 h-[2px] rounded bg-slate-800"></span>
+        <span class="block w-5 h-[2px] rounded bg-slate-800"></span>
+        <span class="block w-5 h-[2px] rounded bg-slate-800"></span>
+      </button>
+      </div>
+    </div>
+
+    <div id="lang-banner" class="hidden bg-slate-900 text-white">
+      <div class="max-w-6xl mx-auto px-5 md:px-8 py-2 flex items-center justify-between gap-3 text-xs sm:text-sm">
+        <a id="lang-banner-link" href="../" class="flex items-center gap-2 font-bold hover:text-sky-300"><span aria-hidden="true">🌐</span><span id="lang-banner-text"></span><span class="dir-arrow" aria-hidden="true">→</span></a>
+        <button id="lang-banner-close" type="button" aria-label="Close" class="w-7 h-7 rounded-lg hover:bg-white/10 text-lg leading-none">&times;</button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="md:hidden bg-white">
+      <div>
+        <div class="px-6 py-6 space-y-2 text-sm font-bold text-slate-700 border-t border-slate-100">
+          <a href="#about" class="mobile-link flex justify-between py-3 hover:text-pop-blue">ABOUT<span class="text-slate-400 font-medium" data-i18n="m.about">Về KBT</span></a>
+          <a href="#service" class="mobile-link flex justify-between py-3 hover:text-pop-blue">SERVICE<span class="text-slate-400 font-medium" data-i18n="m.service">Dịch vụ</span></a>
+          <a href="#global" class="mobile-link flex justify-between py-3 hover:text-pop-blue">GLOBAL<span class="text-slate-400 font-medium" data-i18n="m.global">Vươn ra thế giới</span></a>
+          <a href="#company" class="mobile-link flex justify-between py-3 hover:text-pop-blue">COMPANY<span class="text-slate-400 font-medium" data-i18n="m.company">Thông tin công ty</span></a>
+          <a href="#contact" class="mobile-link block mt-3 py-3.5 text-center rounded-2xl bg-grad text-white" data-i18n="m.contact">CONTACT (Liên hệ)</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+  <!-- ==========================================
+       HERO
+  =========================================== -->
+  <section class="relative pt-28 md:pt-40 pb-32 md:pb-44 overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white bg-dot-pattern">
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-sky-200/50 blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute top-1/3 -left-24 w-80 h-80 rounded-full bg-indigo-200/40 blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-24 right-1/3 w-64 h-64 rounded-full bg-rose-200/30 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <div class="max-w-6xl mx-auto px-5 md:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-8 items-center">
+
+        <div class="lg:col-span-7">
+          <div class="fade-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-100 shadow-sm text-pop-blue text-xs font-extrabold tracking-wider mb-6">
+            <span class="relative flex w-2 h-2"><span class="absolute inset-0 rounded-full bg-pop-blue animate-ping opacity-75"></span><span class="relative w-2 h-2 rounded-full bg-pop-blue"></span></span>
+            <span>JAPAN POP CULTURE TO THE WORLD</span>
+          </div>
+
+          <h1 class="fade-up font-jp text-[30px] leading-[1.35] sm:text-5xl lg:text-[56px] font-black text-slate-900 sm:leading-[1.25] tracking-tight mb-6" style="--d:.08s" data-i18n="hero.title">Đưa <span class="text-grad">đam mê Nhật Bản</span><br />đến <span class="relative inline-block">người hâm mộ<svg class="absolute left-0 -bottom-2 w-full h-3 text-pop-yellow" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 Q 50 0 98 7" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span><br />khắp thế giới.</h1>
+
+          <p class="fade-up text-base md:text-lg text-slate-600 font-jp leading-relaxed mb-9 max-w-xl" style="--d:.16s" data-i18n="hero.lead">Từ thời trang, giày sneaker, sản phẩm từ các IP Nhật Bản cho đến những món đồ chỉ Nhật Bản mới có. Chúng tôi tuyển chọn những nét văn hóa đầy hứng khởi của Nhật Bản và mang chúng vượt biên giới, đến với thế giới.</p>
+
+          <div class="fade-up flex flex-wrap items-center gap-4" style="--d:.24s">
+            <a href="#about" class="group inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-slate-900 text-white text-sm font-bold tracking-wider hover:bg-pop-indigo transition-colors shadow-lg shadow-slate-900/15">
+              <span data-i18n="hero.cta1">Tìm hiểu về KBT</span> <span class="dir-arrow transition-transform group-hover:translate-x-1">→</span>
+            </a>
+            <a href="#contact" class="px-7 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 text-sm font-bold tracking-wider hover:border-pop-blue hover:text-pop-blue transition-colors" data-i18n="hero.cta2">Liên hệ</a>
+          </div>
+
+          <ul class="fade-up mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold text-slate-500" style="--d:.32s">
+            <li class="flex items-center gap-1.5"><span class="text-pop-blue">✓</span><span data-i18n="hero.c1">Kiểm định kỹ lưỡng</span></li>
+            <li class="flex items-center gap-1.5"><span class="text-pop-indigo">✓</span><span data-i18n="hero.c2">Định giá hợp lý</span></li>
+            <li class="flex items-center gap-1.5"><span class="text-pop-pink">✓</span><span data-i18n="hero.c3">Giao hàng toàn cầu</span></li>
+          </ul>
+        </div>
+
+        <!-- Holo card visual -->
+        <div class="lg:col-span-5 relative flex items-center justify-center">
+          <div class="holo-stage relative w-full max-w-md aspect-square flex items-center justify-center">
+
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="88" fill="#E0F2FE" />
+              <g class="animate-spin-slow" style="transform-origin: 100px 100px">
+                <circle cx="100" cy="100" r="72" fill="none" stroke="#38BDF8" stroke-width="1" stroke-dasharray="6 6" />
+                <circle cx="100" cy="28" r="3" fill="#4F46E5" />
+                <circle cx="172" cy="100" r="2.5" fill="#F43F5E" />
+              </g>
+            </svg>
+
+            <!-- back cards (fan) -->
+            <div class="absolute w-52 sm:w-56 aspect-[5/7] rounded-3xl bg-gradient-to-br from-rose-300 to-pink-500 shadow-xl rotate-[-14deg] -translate-x-12 translate-y-2 opacity-90" aria-hidden="true"></div>
+            <div class="absolute w-52 sm:w-56 aspect-[5/7] rounded-3xl bg-gradient-to-br from-cyan-300 to-sky-500 shadow-xl rotate-[12deg] translate-x-12 translate-y-2 opacity-90" aria-hidden="true"></div>
+
+            <!-- main card -->
+            <div id="holo" class="holo-card idle-shine relative z-10 w-56 sm:w-60 aspect-[5/7] rounded-3xl bg-white p-3 shadow-2xl shadow-indigo-500/25 border border-white">
+              <div class="relative h-full rounded-[18px] bg-grad p-4 flex flex-col text-white overflow-hidden">
+                <div class="flex items-center justify-between text-[10px] font-extrabold tracking-widest">
+                  <span>KBT No.001</span>
+                  <span class="text-pop-yellow">★★★</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center justify-center">
+                  <div class="relative">
+                    <div class="absolute inset-0 rounded-full bg-white/25 blur-xl"></div>
+                    <svg class="relative w-24 h-24 drop-shadow-lg" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                      <path d="M12 46c0-12 9-20 20-20s20 8 20 20z" fill="white"/>
+                      <path d="M22 30l3 16M42 30l-3 16" stroke="#C7D2FE" stroke-width="1.5"/>
+                      <path d="M32 36C24 29 13 21 8 4M32 36c8-7 19-15 24-32" stroke="#FDE047" stroke-width="3.5" stroke-linecap="round"/>
+                      <circle cx="32" cy="36" r="4" fill="#FDE047"/>
+                      <rect x="7" y="46" width="50" height="6" rx="3" fill="white"/>
+                      <path d="M12 52l-3 7M52 52l3 7" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <span class="mt-3 text-sm font-extrabold tracking-[0.25em]">KABUTO</span>
+                  <span class="text-[10px] font-bold opacity-80 tracking-widest">JAPAN CULTURE</span>
+                </div>
+                <div class="rounded-xl bg-white/15 backdrop-blur px-3 py-2 flex justify-between items-center text-[10px] font-bold">
+                  <span>FROM TOKYO</span>
+                  <span class="px-2 py-0.5 rounded-full bg-white text-pop-indigo">JAPAN</span>
+                </div>
+                <!-- sparkles -->
+                <svg class="sparkle absolute top-10 left-5 w-4 h-4 text-pop-yellow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg>
+                <svg class="sparkle absolute bottom-16 right-5 w-3 h-3 text-white" style="animation-delay:.8s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg>
+              </div>
+              <div class="holo-shine"></div>
+            </div>
+
+            <div class="absolute bottom-4 left-0 sm:left-2 z-20 bg-white px-4 py-3 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-3 animate-float-reverse">
+              <div class="w-8 h-8 rounded-lg bg-rose-50 text-pop-pink flex items-center justify-center font-bold text-sm">★</div>
+              <div>
+                <div class="text-xs font-bold text-slate-800">Fashion &amp; Culture</div>
+                <div class="text-[10px] text-slate-400" data-i18n="hero.badge">Văn hóa Nhật Bản</div>
+              </div>
+            </div>
+
+            <div class="absolute top-4 right-0 sm:right-2 z-20 bg-white px-4 py-2.5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-2 animate-float">
+              <span class="relative flex w-2.5 h-2.5"><span class="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-75"></span><span class="relative w-2.5 h-2.5 rounded-full bg-emerald-400"></span></span>
+              <span class="text-xs font-bold text-slate-800">World Wide Delivery</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none" aria-hidden="true">
+      <svg class="relative block w-full h-14 sm:h-20 md:h-24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="wave-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(14, 165, 233, 0.08)" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(79, 70, 229, 0.06)" />
+          <use xlink:href="#gentle-wave" x="48" y="6" fill="#FFFFFF" />
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MARQUEE
+  =========================================== -->
+  <div class="marquee bg-white py-5 border-y border-slate-100 overflow-hidden" aria-hidden="true" dir="ltr">
+    <div class="marquee-track text-sm font-extrabold tracking-widest text-slate-400 uppercase">
+      <div class="flex items-center gap-12 pr-12">
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-blue"></span>APPAREL &amp; SNEAKERS</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-indigo"></span>JAPANESE IP</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-pink"></span>JAPANESE POP CULTURE</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-cyan"></span>CURATED IN JAPAN</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-yellow"></span>FROM TOKYO TO THE WORLD</span>
+      </div>
+      <div class="flex items-center gap-12 pr-12">
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-blue"></span>APPAREL &amp; SNEAKERS</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-indigo"></span>JAPANESE IP</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-pink"></span>JAPANESE POP CULTURE</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-cyan"></span>CURATED IN JAPAN</span>
+        <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-yellow"></span>FROM TOKYO TO THE WORLD</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ABOUT
+  =========================================== -->
+  <section id="about" class="py-20 md:py-28 bg-seigaiha relative">
+    <div class="max-w-5xl mx-auto px-5 md:px-8">
+      <div class="fade-up relative bg-white/95 backdrop-blur rounded-[32px] p-8 sm:p-12 md:p-16 shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden">
+        <!-- big kabuto watermark -->
+        <svg class="absolute -right-10 -top-6 w-64 h-64 text-slate-100 pointer-events-none hidden sm:block" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M12 44c0-12 9-20 20-20s20 8 20 20z" fill="currentColor"/>
+          <path d="M32 34C24 27 13 19 8 4M32 34c8-7 19-15 24-30" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          <rect x="7" y="44" width="50" height="6" rx="3" fill="currentColor"/>
+        </svg>
+
+        <div class="relative">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-pop-indigo text-xs font-extrabold tracking-wider mb-5">
+            ABOUT KBT
+          </div>
+
+          <h2 class="font-jp text-2xl sm:text-4xl font-black text-slate-900 leading-snug mb-8" data-i18n="about.title">Tên công ty bắt nguồn từ <span class="text-grad">“KABUTO”</span> — chiếc mũ giáp samurai.<br />Bảo vệ giá trị những món đồ quý giá và mang chúng đến thế giới.</h2>
+
+          <div class="grid md:grid-cols-2 gap-x-10 gap-y-4 text-sm sm:text-base text-slate-600 font-jp leading-loose">
+            <p data-i18n="about.p1">KABUTO — chiếc mũ giáp samurai — là biểu tượng quen thuộc trong anime, các câu chuyện anh hùng và văn hóa truyền thống Nhật Bản. Cái tên KBT Inc. thể hiện cam kết của chúng tôi: bảo vệ giá trị của những món đồ mà người hâm mộ yêu quý và mang chúng đến với mọi người trên khắp thế giới.</p>
+            <div class="space-y-4">
+              <p data-i18n="about.p2">Ngày nay, thời trang, sneaker và các sản phẩm từ IP Nhật Bản như anime, game đang thu hút sự quan tâm nồng nhiệt của người hâm mộ trên toàn thế giới.</p>
+              <p data-i18n="about.p3">Chúng tôi tìm kiếm những món đồ hấp dẫn và sản phẩm văn hóa còn ẩn mình khắp Nhật Bản, trở thành cầu nối đáng tin cậy đưa chúng đến người hâm mộ toàn cầu với chất lượng an tâm.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-100">
+            <div class="fade-up group flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 hover:bg-sky-50 transition-colors" style="--d:.05s">
+              <span class="w-11 h-11 rounded-xl bg-sky-100 text-pop-blue flex items-center justify-center font-black group-hover:scale-110 transition-transform">01</span>
+              <div>
+                <div class="text-xs font-extrabold text-slate-900">JAPAN QUALITY</div>
+                <div class="text-xs text-slate-500" data-i18n="about.f1">Kiểm định &amp; quản lý cẩn thận</div>
+              </div>
+            </div>
+            <div class="fade-up group flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 hover:bg-indigo-50 transition-colors" style="--d:.12s">
+              <span class="w-11 h-11 rounded-xl bg-indigo-100 text-pop-indigo flex items-center justify-center font-black group-hover:scale-110 transition-transform">02</span>
+              <div>
+                <div class="text-xs font-extrabold text-slate-900">CURATED</div>
+                <div class="text-xs text-slate-500" data-i18n="about.f2">Sản phẩm văn hóa tuyển chọn tinh tế</div>
+              </div>
+            </div>
+            <div class="fade-up group flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 hover:bg-rose-50 transition-colors" style="--d:.19s">
+              <span class="w-11 h-11 rounded-xl bg-rose-100 text-pop-pink flex items-center justify-center font-black group-hover:scale-110 transition-transform">03</span>
+              <div>
+                <div class="text-xs font-extrabold text-slate-900">BORDERLESS</div>
+                <div class="text-xs text-slate-500" data-i18n="about.f3">Từ Nhật Bản ra thế giới</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SERVICE
+  =========================================== -->
+  <section id="service" class="py-20 md:py-28 bg-slate-50 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-sky-100/60 blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-5 md:px-8 relative z-10">
+
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+        <span class="text-xs font-extrabold tracking-widest text-pop-blue uppercase">OUR SERVICE</span>
+        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" data-i18n="svc.title">Dịch vụ của chúng tôi</h2>
+        <p class="text-sm sm:text-base text-slate-600 font-jp" data-i18n="svc.lead">Từ thu mua, tìm nguồn hàng Nhật Bản đến phân phối toàn cầu qua thương mại điện tử xuyên biên giới.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <article class="svc-card fade-up bg-white rounded-3xl p-8 shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-sky-200/50 transition-all duration-300">
+          <div class="flex items-start justify-between mb-6">
+            <div class="svc-icon w-14 h-14 rounded-2xl bg-sky-50 text-pop-blue flex items-center justify-center">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+            </div>
+            <span class="text-5xl font-extrabold text-slate-100 leading-none">01</span>
+          </div>
+          <div class="text-xs font-extrabold text-pop-blue tracking-wider mb-1">SERVICE 01</div>
+          <h3 class="font-jp text-xl font-black text-slate-900 mb-3" data-i18n="svc1.title">Thu mua &amp; tìm nguồn hàng Nhật Bản</h3>
+          <p class="text-sm text-slate-600 font-jp leading-relaxed" data-i18n="svc1.body">Chúng tôi định giá hợp lý và thu mua các mặt hàng Nhật Bản được ưa chuộng trong và ngoài nước: thời trang, sneaker, sản phẩm liên quan đến IP và nhân vật Nhật Bản, đồ vintage, v.v.</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold" data-i18n="svc1.tag1">#ThờiTrang</span>
+            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold" data-i18n="svc1.tag2">#Sneaker</span>
+            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold" data-i18n="svc1.tag3">#IPNhậtBản</span>
+          </div>
+        </article>
+
+        <article class="svc-card fade-up bg-white rounded-3xl p-8 shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-indigo-200/50 transition-all duration-300" style="--d:.1s">
+          <div class="flex items-start justify-between mb-6">
+            <div class="svc-icon w-14 h-14 rounded-2xl bg-indigo-50 text-pop-indigo flex items-center justify-center">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            </div>
+            <span class="text-5xl font-extrabold text-slate-100 leading-none">02</span>
+          </div>
+          <div class="text-xs font-extrabold text-pop-indigo tracking-wider mb-1">SERVICE 02</div>
+          <h3 class="font-jp text-xl font-black text-slate-900 mb-3" data-i18n="svc2.title">Kiểm soát chất lượng &amp; bảo toàn giá trị</h3>
+          <p class="text-sm text-slate-600 font-jp leading-relaxed" data-i18n="svc2.body">Để người hâm mộ khắp nơi an tâm sở hữu sản phẩm Nhật Bản, chúng tôi kiểm tra kỹ tình trạng và bảo quản đúng cách, giữ gìn giá trị của từng món đồ sưu tầm.</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold" data-i18n="svc2.tag1">#KiểmĐịnh</span>
+            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold" data-i18n="svc2.tag2">#BảoQuản</span>
+            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold" data-i18n="svc2.tag3">#ĐóngGói</span>
+          </div>
+        </article>
+
+        <article class="svc-card fade-up bg-white rounded-3xl p-8 shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-rose-200/50 transition-all duration-300" style="--d:.2s">
+          <div class="flex items-start justify-between mb-6">
+            <div class="svc-icon w-14 h-14 rounded-2xl bg-rose-50 text-pop-pink flex items-center justify-center">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <span class="text-5xl font-extrabold text-slate-100 leading-none">03</span>
+          </div>
+          <div class="text-xs font-extrabold text-pop-pink tracking-wider mb-1">SERVICE 03</div>
+          <h3 class="font-jp text-xl font-black text-slate-900 mb-3" data-i18n="svc3.title">TMĐT xuyên biên giới &amp; mở rộng toàn cầu</h3>
+          <p class="text-sm text-slate-600 font-jp leading-relaxed" data-i18n="svc3.body">Tận dụng kênh trực tuyến và mạng lưới logistics toàn cầu, chúng tôi đưa những sản phẩm Nhật Bản hấp dẫn trực tiếp đến tay người hâm mộ ở nước ngoài yêu thích thời trang và văn hóa Nhật.</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-rose-50 text-pop-pink text-[11px] font-bold" data-i18n="svc3.tag1">#TMĐTXuyênBiênGiới</span>
+            <span class="px-2.5 py-1 rounded-full bg-rose-50 text-pop-pink text-[11px] font-bold" data-i18n="svc3.tag2">#GiaoHàngQuốcTế</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Flow -->
+      <div class="mt-20 fade-up">
+        <div class="text-center mb-10">
+          <span class="text-xs font-extrabold tracking-widest text-pop-indigo uppercase">HOW IT WORKS</span>
+          <h3 class="font-jp text-2xl font-black text-slate-900 mt-2" data-i18n="flow.title">Từ Nhật Bản đến thế giới</h3>
+        </div>
+        <ol class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-0 items-start">
+          <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
+            <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl">🔍</div>
+            <div><div class="text-[11px] font-extrabold text-pop-blue tracking-widest">STEP 1</div><div class="font-jp font-black text-slate-900" data-i18n="flow1.t">Tìm kiếm &amp; thu mua</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow1.d">Tìm ra những món đồ quý khắp Nhật Bản</p></div>
+            <span class="flow-line hidden md:block absolute top-8 left-[calc(50%+40px)] right-[calc(-50%+40px)] h-[2px]" aria-hidden="true"></span>
+          </li>
+          <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
+            <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl">🛡️</div>
+            <div><div class="text-[11px] font-extrabold text-pop-indigo tracking-widest">STEP 2</div><div class="font-jp font-black text-slate-900" data-i18n="flow2.t">Kiểm định &amp; bảo quản</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow2.d">Kiểm tra tình trạng, giữ gìn giá trị</p></div>
+            <span class="flow-line hidden md:block absolute top-8 left-[calc(50%+40px)] right-[calc(-50%+40px)] h-[2px]" aria-hidden="true"></span>
+          </li>
+          <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
+            <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl">🛒</div>
+            <div><div class="text-[11px] font-extrabold text-pop-pink tracking-widest">STEP 3</div><div class="font-jp font-black text-slate-900" data-i18n="flow3.t">Bán qua TMĐT xuyên biên giới</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow3.d">Gặp gỡ người hâm mộ toàn cầu</p></div>
+            <span class="flow-line hidden md:block absolute top-8 left-[calc(50%+40px)] right-[calc(-50%+40px)] h-[2px]" aria-hidden="true"></span>
+          </li>
+          <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
+            <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-grad shadow-md flex items-center justify-center text-2xl">🌏</div>
+            <div><div class="text-[11px] font-extrabold text-pop-cyan tracking-widest">STEP 4</div><div class="font-jp font-black text-slate-900" data-i18n="flow4.t">Giao đến toàn cầu</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow4.d">Giao hàng an toàn tận tay</p></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       GLOBAL
+  =========================================== -->
+  <section id="global" class="relative py-20 md:py-28 bg-slate-900 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-[.15]" style="background-image: radial-gradient(#94A3B8 1px, transparent 1px); background-size: 22px 22px;" aria-hidden="true"></div>
+    <div class="absolute -top-32 -left-32 w-[28rem] h-[28rem] rounded-full bg-pop-indigo/30 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-pop-blue/25 blur-3xl" aria-hidden="true"></div>
+
+    <div class="relative max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 fade-up">
+        <span class="text-xs font-extrabold tracking-widest text-sky-300 uppercase">GLOBAL</span>
+        <h2 class="font-jp text-3xl sm:text-4xl font-black mt-2 mb-5 leading-snug" data-i18n="global.title">Từ Tokyo<br /><span class="text-grad">đến người hâm mộ toàn cầu.</span></h2>
+        <p class="text-sm sm:text-base text-slate-300 font-jp leading-loose" data-i18n="global.body">Từ Bắc Mỹ, châu Âu đến châu Á, những người yêu thời trang và văn hóa Nhật Bản có mặt ở khắp nơi. Đặt trụ sở tại Tokyo, KBT mang những điều người hâm mộ yêu thích vượt qua mọi biên giới.</p>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-bold">🇺🇸 North America</span>
+          <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-bold">🇪🇺 Europe</span>
+          <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-bold">🌏 Asia</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 fade-up" style="--d:.1s">
+        <div class="relative rounded-3xl bg-white/5 border border-white/10 p-4 sm:p-6 backdrop-blur">
+          <svg viewBox="0 0 600 320" dir="ltr" style="direction: ltr" class="w-full h-auto" aria-label="東京から北米・欧州・アジアへのルート図" role="img">
+            <defs>
+              <linearGradient id="routeGrad" x1="0" x2="1">
+                <stop offset="0" stop-color="#0EA5E9"/><stop offset=".55" stop-color="#4F46E5"/><stop offset="1" stop-color="#F43F5E"/>
+              </linearGradient>
+              <pattern id="mapdots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#475569"/></pattern>
+            </defs>
+            <!-- stylised continents -->
+            <g fill="url(#mapdots)">
+              <path d="M40 70 Q90 40 160 55 Q190 80 175 120 Q150 150 120 170 Q90 160 70 130 Q45 110 40 70Z"/>
+              <path d="M140 190 Q170 185 180 215 Q175 260 155 290 Q140 270 135 235Z"/>
+              <path d="M255 60 Q300 45 340 60 Q345 85 320 100 Q290 110 265 95Z"/>
+              <path d="M280 120 Q320 115 335 150 Q330 200 305 235 Q285 210 275 165Z"/>
+              <path d="M350 55 Q430 35 500 60 Q520 100 480 130 Q430 140 390 120 Q355 100 350 55Z"/>
+              <path d="M470 220 Q510 210 530 235 Q520 260 490 262 Q470 250 470 220Z"/>
+            </g>
+            <!-- routes from Tokyo -->
+            <g fill="none" stroke="url(#routeGrad)" stroke-width="2.5" stroke-linecap="round">
+              <path class="route" d="M505 105 Q 330 -10 120 100"/>
+              <path class="route" d="M505 105 Q 410 30 300 75"/>
+              <path class="route" d="M505 105 Q 470 160 420 175"/>
+              <path class="route" d="M505 105 Q 530 170 500 238"/>
+            </g>
+            <g>
+              <circle cx="505" cy="105" r="7" fill="#F43F5E"/>
+              <circle class="ping-dot" cx="505" cy="105" r="7" fill="#F43F5E" opacity=".6"/>
+              <circle cx="120" cy="100" r="5" fill="#38BDF8"/>
+              <circle cx="300" cy="75" r="5" fill="#818CF8"/>
+              <circle cx="420" cy="175" r="5" fill="#22D3EE"/>
+              <circle cx="500" cy="238" r="5" fill="#FACC15"/>
+            </g>
+            <g font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#E2E8F0">
+              <text x="515" y="100">TOKYO</text>
+              <text x="70" y="88">NORTH AMERICA</text>
+              <text x="276" y="60">EUROPE</text>
+              <text x="380" y="198">ASIA</text>
+              <text x="470" y="262">OCEANIA</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPANY
+  =========================================== -->
+  <section id="company" class="py-20 md:py-28 bg-white">
+    <div class="max-w-4xl mx-auto px-5 md:px-8">
+      <div class="text-center mb-12 fade-up">
+        <span class="text-xs font-extrabold tracking-widest text-pop-blue uppercase">COMPANY PROFILE</span>
+        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2" data-i18n="co.title">Thông tin công ty</h2>
+      </div>
+
+      <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/70 fade-up">
+        <dl class="divide-y divide-slate-200/80 text-sm sm:text-base font-jp">
+          <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-blue"></span><span data-i18n="co.name.dt">Tên công ty</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800" data-i18n="co.name.dd">KBT Inc. (KBT Kabushiki Kaisha)</dd>
+          </div>
+          <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-indigo"></span><span data-i18n="co.rep.dt">Người đại diện</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800" data-i18n="co.rep.dd">Kosuke Ohmura – Giám đốc đại diện</dd>
+          </div>
+          <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-pink"></span><span data-i18n="co.est.dt">Thành lập</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800" data-i18n="co.est.dd">Tháng 10 năm 2026</dd>
+          </div>
+          <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-cyan"></span><span data-i18n="co.addr.dt">Địa chỉ</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800">
+              <p dir="auto" class="font-medium">〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</p>
+              <p dir="ltr" class="text-xs text-slate-400 mt-1">Mitamachi Terrace 4F, 5-34-2 Shiba, Minato-ku, Tokyo 108-0014, Japan</p>
+              <a href="https://maps.google.com/?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%8A%9D5-34-2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-3 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-bold text-pop-blue hover:border-pop-blue transition-colors">
+                📍 <span data-i18n="co.map">Xem trên Google Maps</span> <span aria-hidden="true">↗</span>
+              </a>
+            </dd>
+          </div>
+          <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-yellow"></span><span data-i18n="co.biz.dt">Lĩnh vực kinh doanh</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800">
+              <ul class="space-y-2">
+                <li class="flex gap-2"><span class="text-pop-blue">●</span><span data-i18n="co.biz1">Lên kế hoạch, thu mua, kinh doanh và xuất nhập khẩu thời trang, sneaker, đồ chơi, sản phẩm nhân vật và các sản phẩm khác liên quan đến văn hóa Nhật Bản</span></li>
+                <li class="flex gap-2"><span class="text-pop-indigo">●</span><span data-i18n="co.biz2">Thương mại điện tử xuyên biên giới và phân phối toàn cầu</span></li>
+                <li class="flex gap-2"><span class="text-pop-pink">●</span><span data-i18n="co.biz3">Quảng bá văn hóa đại chúng Nhật Bản ra nước ngoài</span></li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACT
+  =========================================== -->
+  <section id="contact" class="py-20 md:py-28 bg-gradient-to-b from-slate-50 to-sky-50/60 bg-dot-pattern">
+    <div class="max-w-3xl mx-auto px-5 md:px-8">
+      <div class="text-center mb-12 fade-up">
+        <span class="text-xs font-extrabold tracking-widest text-pop-blue uppercase">CONTACT US</span>
+        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-3" data-i18n="ct.title">Liên hệ</h2>
+        <p class="text-sm text-slate-600 font-jp" data-i18n="ct.lead">Mọi thắc mắc về giao dịch, hợp tác kinh doanh hoặc các vấn đề khác, vui lòng liên hệ qua biểu mẫu dưới đây.</p>
+        <p class="mt-4 inline-flex items-start gap-2 text-start px-4 py-3 rounded-2xl bg-amber-50 border border-amber-200 text-[12px] leading-relaxed text-amber-800 font-jp">
+          <span aria-hidden="true">⚠️</span>
+          <span data-i18n="ct.notice">Chúng tôi không tiếp nhận các lời chào hàng, mời chào hay quảng cáo. Vui lòng không gửi biểu mẫu bằng công cụ tự động hoặc AI agent. Chúng tôi sẽ không phản hồi các yêu cầu như vậy.</span>
+        </p>
+      </div>
+
+      <div id="form-wrap" class="relative fade-up">
+        <form id="contact-form" class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-5" novalidate>
+          <!-- ▼ Web3Forms の Access Key（info@kbt-inc.jp 宛てに発行したもの）に置き換えてください。公開しても安全な値です。 -->
+          <input type="hidden" name="access_key" value="9024d44e-f407-47a7-bb0a-313af5e5e32c">
+          <input type="hidden" name="from_name" value="KBT Website">
+          <input type="hidden" name="language" value="Tiếng Việt">
+          <input type="hidden" name="subject" value="">
+          <!-- Honeypot: 人間には見えない欄。入力があればbotとして破棄 -->
+          <div class="absolute w-px h-px overflow-hidden opacity-0 pointer-events-none" style="clip: rect(0 0 0 0); clip-path: inset(50%);" aria-hidden="true">
+            <label for="f-botcheck">この欄は空のままにしてください</label>
+            <input id="f-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="field">
+              <label for="f-name" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.name">Họ và tên <span class="text-pop-pink">*</span></label>
+              <input id="f-name" name="name" type="text" required maxlength="80" autocomplete="name" placeholder="Nguyễn Văn A" data-i18n-ph="ph.name" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+              <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5" data-i18n="e.name">Vui lòng nhập họ tên</p>
+            </div>
+            <div class="field">
+              <label for="f-company" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.company">Công ty <span class="text-slate-400 font-medium">(không bắt buộc)</span></label>
+              <input id="f-company" name="company" type="text" maxlength="120" autocomplete="organization" placeholder="Tên công ty" data-i18n-ph="ph.company" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-email" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.email">Email <span class="text-pop-pink">*</span></label>
+            <input id="f-email" dir="ltr" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="info@example.com" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5" data-i18n="e.email">Vui lòng nhập email hợp lệ</p>
+          </div>
+
+          <div class="field">
+            <label for="f-topic" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.topic">Loại yêu cầu</label>
+            <div class="flex flex-wrap gap-2" role="radiogroup" aria-labelledby="f-topic">
+              <label class="cursor-pointer"><input type="radio" name="topic" value="お取引について" class="peer sr-only" checked><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-blue peer-checked:text-white peer-checked:border-pop-blue peer-focus-visible:ring-4 peer-focus-visible:ring-sky-200 transition-colors" data-i18n="f.t1">Về giao dịch</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="事業提携" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-indigo peer-checked:text-white peer-checked:border-pop-indigo peer-focus-visible:ring-4 peer-focus-visible:ring-indigo-200 transition-colors" data-i18n="f.t2">Hợp tác kinh doanh</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="その他" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-pink peer-checked:text-white peer-checked:border-pop-pink peer-focus-visible:ring-4 peer-focus-visible:ring-rose-200 transition-colors" data-i18n="f.t3">Khác</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-message" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.message">Nội dung <span class="text-pop-pink">*</span></label>
+            <textarea id="f-message" name="message" rows="5" required minlength="10" maxlength="3000" placeholder="Vui lòng nhập nội dung" data-i18n-ph="ph.message" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white"></textarea>
+            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5" data-i18n="e.message">Vui lòng nhập ít nhất 10 ký tự (tối đa 2 URL)</p>
+          </div>
+
+          <div class="field space-y-3 rounded-2xl bg-slate-50 border border-slate-200 p-4">
+            <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-700 font-jp leading-relaxed">
+              <input id="f-not-sales" name="not_sales" type="checkbox" required value="はい" class="mt-0.5 w-4 h-4 accent-pop-blue shrink-0">
+              <span data-i18n="f.c1">Đây không phải yêu cầu nhằm mục đích chào hàng, mời chào hay quảng cáo <span class="text-pop-pink">*</span></span>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-700 font-jp leading-relaxed">
+              <input id="f-privacy" name="privacy_agreed" type="checkbox" required value="同意" class="mt-0.5 w-4 h-4 accent-pop-blue shrink-0">
+              <span data-i18n="f.c2">Tôi đồng ý với <button type="button" class="open-privacy underline font-bold text-pop-blue hover:text-pop-indigo">Chính sách bảo mật</button> <span class="text-pop-pink">*</span></span>
+            </label>
+            <p class="field-error text-[11px] font-bold text-pop-pink" data-i18n="e.check">Vui lòng đánh dấu các mục trên</p>
+          </div>
+
+          <p id="form-error" class="hidden text-center text-xs font-bold text-pop-pink" role="alert"></p>
+
+          <div class="text-center">
+            <button id="submit-btn" type="submit" class="group relative w-full sm:w-auto min-w-[240px] px-8 py-4 rounded-2xl bg-grad text-white text-sm font-bold tracking-wider shadow-lg shadow-pop-blue/25 hover:shadow-xl hover:shadow-pop-indigo/30 hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-70 disabled:pointer-events-none">
+              <span class="btn-label inline-flex items-center gap-2" data-i18n="form.submit">Gửi <span class="dir-arrow transition-transform group-hover:translate-x-1">→</span></span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Success -->
+        <div id="form-success" class="hidden bg-white rounded-3xl p-10 sm:p-14 shadow-xl shadow-slate-200/50 border border-slate-100 text-center" role="status" aria-live="polite">
+          <div class="pop-in mx-auto w-20 h-20 rounded-full bg-grad flex items-center justify-center text-white shadow-lg shadow-pop-blue/30">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-jp text-2xl font-black text-slate-900 mt-6" data-i18n="ok.title">Đã gửi thành công!</h3>
+          <p class="text-sm text-slate-600 font-jp mt-3 leading-relaxed" data-i18n="ok.body">Cảm ơn bạn đã liên hệ.<br />Chúng tôi sẽ xem xét và phản hồi sớm nhất.</p>
+          <button id="form-again" type="button" class="mt-8 px-6 py-3 rounded-2xl border border-slate-200 text-xs font-bold text-slate-600 hover:border-pop-blue hover:text-pop-blue transition-colors" data-i18n="ok.again">Gửi yêu cầu khác</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+  =========================================== -->
+  <footer class="bg-slate-900 text-slate-400 pt-14 pb-10">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 pb-8 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-grad flex items-center justify-center text-white">
+            <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M14 44c0-11 8-18 18-18s18 7 18 18z" fill="currentColor"/>
+              <path d="M32 34C25 28 15 21 10 6M32 34c7-6 17-13 22-28" stroke="#FDE047" stroke-width="4.5" stroke-linecap="round"/>
+              <rect x="10" y="44" width="44" height="7" rx="3.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <div dir="auto" class="text-base font-extrabold text-white tracking-wider" data-i18n="foot.company">KBT Inc.</div>
+            <div dir="auto" class="text-xs text-slate-400">〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-6 text-xs font-bold">
+          <a href="#about" class="hover:text-white transition-colors">ABOUT</a>
+          <a href="#service" class="hover:text-white transition-colors">SERVICE</a>
+          <a href="#global" class="hover:text-white transition-colors">GLOBAL</a>
+          <a href="#company" class="hover:text-white transition-colors">COMPANY</a>
+          <button type="button" class="open-privacy hover:text-white transition-colors" data-i18n="foot.privacy">Chính sách bảo mật</button>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+        <p dir="ltr">© 2026 KBT Inc. All Rights Reserved.</p>
+        <p dir="ltr" class="text-[11px] tracking-widest">JAPAN POP CULTURE TO THE WORLD</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <a id="to-top" href="#top" aria-label="ページの先頭へ" class="fixed right-5 bottom-5 z-40 w-12 h-12 rounded-2xl bg-white shadow-lg border border-slate-100 flex items-center justify-center text-slate-700 hover:text-pop-blue hover:-translate-y-0.5 transition-all opacity-0 pointer-events-none">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <!-- ==========================================
+       PRIVACY POLICY MODAL
+  =========================================== -->
+  <div id="privacy-modal" class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 opacity-0" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="modal-panel bg-white rounded-3xl max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
+        <h3 id="privacy-title" class="font-jp text-lg font-black text-slate-900" data-i18n="pp.title">Chính sách bảo mật</h3>
+        <button id="close-privacy" type="button" aria-label="閉じる" class="w-9 h-9 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 text-2xl leading-none flex items-center justify-center">&times;</button>
+      </div>
+      <div class="p-6 overflow-y-auto overscroll-contain space-y-5 text-xs sm:text-sm text-slate-600 leading-relaxed font-jp" data-i18n="pp.body"><p>KBT Inc. (sau đây gọi là “Công ty”) nhận thức rõ tầm quan trọng của thông tin cá nhân và ban hành Chính sách bảo mật dưới đây nhằm xử lý và bảo vệ thông tin cá nhân một cách phù hợp.</p><div><h4 class="font-bold text-slate-900 mb-1">1. Thu thập thông tin cá nhân</h4><p>Công ty thu thập thông tin cá nhân bằng các phương thức hợp pháp và công bằng.</p></div><div><h4 class="font-bold text-slate-900 mb-1">2. Mục đích sử dụng</h4><p>Thông tin cá nhân quý khách cung cấp được sử dụng để liên lạc, giới thiệu hoạt động kinh doanh, trả lời câu hỏi và thực hiện giao dịch.</p></div><div><h4 class="font-bold text-slate-900 mb-1">3. Không tiết lộ cho bên thứ ba</h4><p>Trừ trường hợp pháp luật yêu cầu, Công ty không tiết lộ hoặc cung cấp thông tin cá nhân cho bên thứ ba khi chưa có sự đồng ý của quý khách.</p><p class="mt-2">Biểu mẫu liên hệ được xử lý qua dịch vụ bên ngoài “Web3Forms”; nội dung quý khách nhập sẽ được gửi đến Công ty thông qua dịch vụ này.</p></div><div><h4 class="font-bold text-slate-900 mb-1">4. Biện pháp bảo mật</h4><p>Công ty áp dụng các biện pháp cần thiết và phù hợp để ngăn ngừa rò rỉ, mất mát hoặc hư hỏng thông tin cá nhân.</p></div><div><h4 class="font-bold text-slate-900 mb-1">5. Công khai, chỉnh sửa, ngừng sử dụng</h4><p>Khi quý khách yêu cầu công khai, chỉnh sửa, xóa hoặc ngừng sử dụng thông tin cá nhân, Công ty sẽ xác minh danh tính và xử lý kịp thời theo quy định pháp luật.</p></div><div><h4 class="font-bold text-slate-900 mb-1">6. Sử dụng cookie</h4><p>Website của Công ty có thể sử dụng cookie để nâng cao tiện ích và phân tích truy cập. Quý khách có thể tắt cookie trong cài đặt trình duyệt.</p></div><div><h4 class="font-bold text-slate-900 mb-1">7. Liên hệ</h4><p>KBT Inc.<br />Mitamachi Terrace 4F, 5-34-2 Shiba, Minato-ku, Tokyo 108-0014, Japan<br />Kosuke Ohmura – Giám đốc đại diện</p></div><p class="text-[11px] text-slate-400">Ngày ban hành: tháng 10 năm 2026. Bản tiếng Việt chỉ mang tính tham khảo; trường hợp có khác biệt, bản tiếng Nhật sẽ được ưu tiên.</p></div>
+    </div>
+  </div>
+
+  <script src="../i18n.js"></script>
+  <script>
+  (() => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const $ = (s, el = document) => el.querySelector(s);
+    const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+    // 0. i18n — 各言語のページは tools/build.py が翻訳済みHTMLとして生成。ここではスクリプト内のメッセージだけを扱う
+    const I18N = window.KBT_I18N || {};
+    const LANGS = ['ja', 'en', 'zh-Hans', 'zh-Hant', 'ko', 'th', 'vi', 'es', 'fr', 'ar'];
+    const LABELS = { ja: '日本語', en: 'English', 'zh-Hans': '简体中文', 'zh-Hant': '繁體中文', ko: '한국어', th: 'ไทย', vi: 'Tiếng Việt', es: 'Español', fr: 'Français', ar: 'العربية' };
+    const lang = LANGS.includes(document.documentElement.lang) ? document.documentElement.lang : 'ja';
+    const t = (key) => (I18N[lang] && I18N[lang][key]) ?? (I18N.ja && I18N.ja[key]) ?? key;
+    const root = lang === 'ja' ? './' : '../';
+    const pageUrl = (code) => root + (code === 'ja' ? '' : code.toLowerCase() + '/');
+
+    // 旧URL（?lang=en など）で来た人は該当ページへ
+    const qLang = new URLSearchParams(location.search).get('lang');
+    if (qLang && LANGS.includes(qLang) && qLang !== lang) { location.replace(pageUrl(qLang) + location.hash); return; }
+
+    // ブラウザの言語に合うページがあれば、自動では飛ばさず案内を出す
+    const prefLang = (() => {
+      for (const l of (navigator.languages || [navigator.language || ''])) {
+        const v = l.toLowerCase();
+        if (v.startsWith('zh')) return /hant|tw|hk|mo/.test(v) ? 'zh-Hant' : 'zh-Hans';
+        const hit = LANGS.find((c) => !c.startsWith('zh') && v.startsWith(c));
+        if (hit) return hit;
+      }
+      return null;
+    })();
+    let bannerOff = false;
+    try { bannerOff = localStorage.getItem('kbt_lang_banner_off') === '1'; } catch (_) {}
+    const banner = $('#lang-banner');
+    const hideBanner = () => { banner.classList.add('hidden'); try { localStorage.setItem('kbt_lang_banner_off', '1'); } catch (_) {} };
+    if (prefLang && prefLang !== lang && !bannerOff && I18N[prefLang] && I18N[prefLang]['banner']) {
+      const link = $('#lang-banner-link');
+      link.href = pageUrl(prefLang);
+      link.lang = prefLang;
+      link.dir = prefLang === 'ar' ? 'rtl' : 'ltr';
+      $('#lang-banner-text').textContent = I18N[prefLang]['banner'];
+      banner.classList.remove('hidden');
+    }
+    $('#lang-banner-close').addEventListener('click', hideBanner);
+    $('#lang-banner-link').addEventListener('click', hideBanner);
+
+    // Language menu
+    const langBtn = $('#lang-btn');
+    const langMenu = $('#lang-menu');
+    const setLangMenu = (open) => {
+      langMenu.classList.toggle('hidden', !open);
+      langBtn.setAttribute('aria-expanded', String(open));
+      if (open) ($('.lang-opt[aria-checked="true"]', langMenu) || $('.lang-opt', langMenu)).focus();
+    };
+    langBtn.addEventListener('click', (e) => { e.stopPropagation(); setLangMenu(langMenu.classList.contains('hidden')); });
+    langMenu.addEventListener('click', (e) => { if (e.target.closest('.lang-opt')) hideBanner(); });
+    langMenu.addEventListener('keydown', (e) => {
+      const opts = $$('.lang-opt', langMenu);
+      const i = opts.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); opts[(i + 1) % opts.length].focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); opts[(i - 1 + opts.length) % opts.length].focus(); }
+    });
+    document.addEventListener('click', (e) => { if (!e.target.closest('#lang-wrap')) setLangMenu(false); });
+
+    // 1. Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    $$('.fade-up').forEach((el) => io.observe(el));
+
+    // 2. Header shadow, progress bar, back-to-top
+    const navLinks = $$('.nav-link');
+    const header = $('#site-header');
+    const progress = $('#progress');
+    const toTop = $('#to-top');
+    let ticking = false;
+    const onScroll = () => {
+      const y = scrollY;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      header.classList.toggle('is-scrolled', y > 10);
+      progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+      const show = y > innerHeight * 0.8;
+      toTop.style.opacity = show ? '1' : '0';
+      toTop.style.pointerEvents = show ? 'auto' : 'none';
+      if (y < innerHeight * 0.5) navLinks.forEach((a) => a.classList.remove('is-active'));
+      ticking = false;
+    };
+    addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+    onScroll();
+
+    // 3. Active nav link
+    const sectionIO = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['about', 'service', 'global', 'company', 'contact'].forEach((id) => { const s = document.getElementById(id); if (s) sectionIO.observe(s); });
+
+    // 4. Mobile menu
+    const menuBtn = $('#mobile-menu-btn');
+    const mobileMenu = $('#mobile-menu');
+    const setMenu = (open) => {
+      mobileMenu.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? t('aria.menuClose') : t('aria.menuOpen'));
+    };
+    menuBtn.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('is-open')));
+    $$('.mobile-link').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+    // 5. Holo card tilt
+    const card = $('#holo');
+    if (card && !reduce) {
+      const stage = card.parentElement;
+      stage.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1);
+        const py = Math.min(Math.max((e.clientY - r.top) / r.height, 0), 1);
+        card.classList.remove('idle-shine');
+        card.classList.add('is-tilting');
+        card.style.setProperty('--ry', `${(px - 0.5) * 24}deg`);
+        card.style.setProperty('--rx', `${(0.5 - py) * 24}deg`);
+        card.style.setProperty('--px', `${px * 100}%`);
+        card.style.setProperty('--py', `${py * 100}%`);
+        card.style.setProperty('--o', '0.9');
+      });
+      stage.addEventListener('pointerleave', () => {
+        card.classList.remove('is-tilting');
+        card.classList.add('idle-shine');
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--o', '0');
+      });
+    }
+
+    // 6. Contact form — Web3Forms → info@kbt-inc.jp
+    const form = $('#contact-form');
+    const success = $('#form-success');
+    const wrap = $('#form-wrap');
+    const btn = $('#submit-btn');
+    const submitHTML = $('.btn-label', btn).innerHTML;
+    const formError = $('#form-error');
+    const ENDPOINT = 'https://api.web3forms.com/submit';
+    const loadedAt = Date.now();
+    const COOLDOWN_MS = 60 * 1000;
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    const urlCount = (v) => (v.match(/https?:\/\/|www\./gi) || []).length;
+
+    const validate = (input) => {
+      const v = input.value.trim();
+      let ok;
+      if (input.type === 'checkbox') ok = input.checked;
+      else if (input.type === 'email') ok = emailOk(v);
+      else if (input.name === 'message') ok = v.length >= 10 && urlCount(v) <= 2;
+      else ok = v !== '';
+      const field = input.closest('.field');
+      if (input.type === 'checkbox') {
+        field.classList.toggle('is-invalid', !$$('input[type=checkbox][required]', field).every((c) => c.checked));
+      } else {
+        field.classList.toggle('is-invalid', !ok);
+      }
+      return ok;
+    };
+    $$('[required]', form).forEach((el) => {
+      el.addEventListener('blur', () => { if (el.type !== 'checkbox' && el.value) validate(el); });
+      el.addEventListener('input', () => { if (el.closest('.field').classList.contains('is-invalid')) validate(el); });
+      el.addEventListener('change', () => { if (el.type === 'checkbox') validate(el); });
+    });
+
+    const showError = (msg) => { formError.textContent = msg; formError.classList.remove('hidden'); };
+    const clearError = () => { formError.textContent = ''; formError.classList.add('hidden'); };
+
+    const confetti = () => {
+      if (reduce) return;
+      const colors = ['#0EA5E9', '#4F46E5', '#F43F5E', '#06B6D4', '#FACC15'];
+      for (let i = 0; i < 36; i++) {
+        const c = document.createElement('span');
+        c.className = 'confetti';
+        const a = Math.random() * Math.PI * 2;
+        const d = 120 + Math.random() * 180;
+        c.style.left = '50%';
+        c.style.top = '90px';
+        c.style.background = colors[i % colors.length];
+        c.style.setProperty('--x', `${Math.cos(a) * d}px`);
+        c.style.setProperty('--y', `${Math.sin(a) * d - 60}px`);
+        c.style.setProperty('--r', `${Math.random() * 720 - 360}deg`);
+        wrap.appendChild(c);
+        setTimeout(() => c.remove(), 1300);
+      }
+    };
+
+    const showSuccess = () => {
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+      const mark = $('.pop-in', success);
+      mark.style.animation = 'none';
+      void success.offsetWidth;
+      mark.style.animation = '';
+      confetti();
+      form.reset();
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+
+      // Honeypot: 人間には見えない欄にチェックがあれば bot → 成功したふりをして何も送らない
+      if (form.botcheck.checked) { showSuccess(); return; }
+
+      const invalid = $$('[required]', form).filter((el) => !validate(el));
+      if (invalid.length) { invalid[0].focus(); return; }
+
+      // ページを開いてから極端に早い送信は自動入力とみなす
+      if (Date.now() - loadedAt < 4000) { showError(t('err.fast')); return; }
+
+      // 連続送信の防止（同じブラウザから60秒以内）
+      let last = 0;
+      try { last = Number(localStorage.getItem('kbt_contact_sent_at')) || 0; } catch (_) {}
+      if (Date.now() - last < COOLDOWN_MS) { showError(t('err.cooldown')); return; }
+
+      const key = form.access_key.value;
+      if (!key || key.startsWith('YOUR_')) {
+        showError(t('err.notReady'));
+        console.warn('Web3Forms access key is not set.');
+        return;
+      }
+
+
+      const topic = form.querySelector('[name="topic"]:checked')?.value || 'その他';
+      form.subject.value = `【KBT お問い合わせ】${topic} - ${form.elements.name.value.trim()}様 [${LABELS[lang]}]`;
+      form.elements.language.value = LABELS[lang];
+
+      btn.disabled = true;
+      $('.btn-label', btn).textContent = t('form.sending');
+      try {
+        const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) throw new Error(data.message || 'send failed');
+        try { localStorage.setItem('kbt_contact_sent_at', String(Date.now())); } catch (_) {}
+        showSuccess();
+      } catch (err) {
+        showError(t('err.failed'));
+      } finally {
+        btn.disabled = false;
+        $('.btn-label', btn).innerHTML = submitHTML;
+      }
+    });
+
+    $('#form-again').addEventListener('click', () => {
+      success.classList.add('hidden');
+      form.classList.remove('hidden');
+      $('#f-name').focus();
+    });
+
+    // 7. Privacy modal
+    const modal = $('#privacy-modal');
+    let lastFocus = null;
+    const openModal = () => {
+      lastFocus = document.activeElement;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('is-locked');
+      requestAnimationFrame(() => modal.classList.add('is-open'));
+      $('#close-privacy').focus();
+    };
+    const closeModal = () => {
+      if (modal.classList.contains('hidden')) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); lastFocus?.focus(); }, 250);
+    };
+    document.addEventListener('click', (e) => { if (e.target.closest('.open-privacy')) openModal(); });
+    $('#close-privacy').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeModal(); setMenu(false); if (!langMenu.classList.contains('hidden')) { setLangMenu(false); langBtn.focus(); } }
+    });
+  })();
+  </script>
+</body>
+</html>
