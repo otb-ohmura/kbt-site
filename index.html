@@ -54,6 +54,30 @@
     }
     /* 見出しは丸ゴシック */
     h1, h2, h3, h1.font-jp, h2.font-jp, h3.font-jp { font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif; }
+
+    /* ---------- 言語ごとのフォント ---------- */
+    html[lang="en"], html[lang="vi"] { --f-body: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; --f-head: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif; }
+    html[lang="ko"] { --f-body: 'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; --f-head: var(--f-body); }
+    html[lang="zh-Hans"] { --f-body: 'Plus Jakarta Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; --f-head: var(--f-body); }
+    html[lang="zh-Hant"] { --f-body: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif; --f-head: var(--f-body); }
+    html[lang="ar"] { --f-body: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', Tahoma, sans-serif; --f-head: var(--f-body); }
+    html:not([lang="ja"]) body, html:not([lang="ja"]) .font-jp { font-family: var(--f-body); }
+    html:not([lang="ja"]) h1, html:not([lang="ja"]) h2, html:not([lang="ja"]) h3 { font-family: var(--f-head); }
+    html:not([lang="ja"]) h1 { letter-spacing: -0.01em; }
+    /* アラビア語は文字が連結するので字間を空けない */
+    html[lang="ar"] body * { letter-spacing: 0 !important; }
+    html[lang="ar"] h1, html[lang="ar"] h2 { line-height: 1.5; }
+
+    /* ---------- 右から左（アラビア語） ---------- */
+    [dir="rtl"] .dir-arrow { display: inline-block; transform: scaleX(-1); }
+    [dir="rtl"] .group:hover .dir-arrow { transform: scaleX(-1) translateX(4px); }
+    [dir="rtl"] .flow-line { left: calc(-50% + 40px) !important; right: calc(50% + 40px) !important; }
+
+    /* ---------- 言語メニュー ---------- */
+    .lang-opt { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 700; color: #334155; text-align: start; }
+    .lang-opt:hover, .lang-opt:focus-visible { background: #F0F9FF; color: #0EA5E9; outline: none; }
+    .lang-opt[aria-checked="true"] { color: #0EA5E9; }
+    .lang-opt[aria-checked="true"]::after { content: "✓"; font-size: 12px; }
     body.is-locked { overflow: hidden; }
 
     .text-grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -212,13 +236,13 @@
             <rect x="10" y="44" width="44" height="7" rx="3.5" fill="currentColor"/>
           </svg>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col" dir="ltr">
           <span class="text-xl font-extrabold tracking-wider text-slate-900 leading-none">KBT</span>
           <span class="text-[10px] font-bold tracking-widest text-pop-blue mt-0.5">KBT INC.</span>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-slate-500" aria-label="メインメニュー">
+      <nav class="hidden md:flex items-center gap-8 ms-auto me-5 text-sm font-bold text-slate-500" aria-label="メインメニュー">
         <a href="#about" class="nav-link hover:text-slate-900 transition-colors">ABOUT</a>
         <a href="#service" class="nav-link hover:text-slate-900 transition-colors">SERVICE</a>
         <a href="#global" class="nav-link hover:text-slate-900 transition-colors">GLOBAL</a>
@@ -228,21 +252,40 @@
         </a>
       </nav>
 
+      <div class="flex items-center gap-2">
+        <div class="relative" id="lang-wrap">
+          <button id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Language" class="flex items-center gap-1.5 h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-pop-blue hover:text-pop-blue transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+            <span id="lang-code" class="sm:hidden">JA</span>
+            <span id="lang-current" class="hidden sm:inline">日本語</span>
+            <svg class="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul id="lang-menu" role="menu" class="hidden absolute end-0 mt-2 w-48 py-2 bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 z-50">
+            <li><button type="button" role="menuitemradio" data-lang="ja" lang="ja" class="lang-opt">日本語</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="en" lang="en" class="lang-opt">English</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="zh-Hans" lang="zh-Hans" class="lang-opt">简体中文</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="zh-Hant" lang="zh-Hant" class="lang-opt">繁體中文</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="ko" lang="ko" class="lang-opt">한국어</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="vi" lang="vi" class="lang-opt">Tiếng Việt</button></li>
+            <li><button type="button" role="menuitemradio" data-lang="ar" lang="ar" dir="rtl" class="lang-opt">العربية</button></li>
+          </ul>
+        </div>
       <button id="mobile-menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu" class="burger md:hidden w-10 h-10 flex flex-col items-center justify-center gap-[4px] rounded-xl hover:bg-slate-100">
         <span class="block w-5 h-[2px] rounded bg-slate-800"></span>
         <span class="block w-5 h-[2px] rounded bg-slate-800"></span>
         <span class="block w-5 h-[2px] rounded bg-slate-800"></span>
       </button>
+      </div>
     </div>
 
     <div id="mobile-menu" class="md:hidden bg-white">
       <div>
         <div class="px-6 py-6 space-y-2 text-sm font-bold text-slate-700 border-t border-slate-100">
-          <a href="#about" class="mobile-link flex justify-between py-3 hover:text-pop-blue">ABOUT<span class="text-slate-400 font-medium">KBTについて</span></a>
-          <a href="#service" class="mobile-link flex justify-between py-3 hover:text-pop-blue">SERVICE<span class="text-slate-400 font-medium">事業内容</span></a>
-          <a href="#global" class="mobile-link flex justify-between py-3 hover:text-pop-blue">GLOBAL<span class="text-slate-400 font-medium">世界へ</span></a>
-          <a href="#company" class="mobile-link flex justify-between py-3 hover:text-pop-blue">COMPANY<span class="text-slate-400 font-medium">会社概要</span></a>
-          <a href="#contact" class="mobile-link block mt-3 py-3.5 text-center rounded-2xl bg-grad text-white">CONTACT（お問い合わせ）</a>
+          <a href="#about" class="mobile-link flex justify-between py-3 hover:text-pop-blue">ABOUT<span class="text-slate-400 font-medium" data-i18n="m.about">KBTについて</span></a>
+          <a href="#service" class="mobile-link flex justify-between py-3 hover:text-pop-blue">SERVICE<span class="text-slate-400 font-medium" data-i18n="m.service">事業内容</span></a>
+          <a href="#global" class="mobile-link flex justify-between py-3 hover:text-pop-blue">GLOBAL<span class="text-slate-400 font-medium" data-i18n="m.global">世界へ</span></a>
+          <a href="#company" class="mobile-link flex justify-between py-3 hover:text-pop-blue">COMPANY<span class="text-slate-400 font-medium" data-i18n="m.company">会社概要</span></a>
+          <a href="#contact" class="mobile-link block mt-3 py-3.5 text-center rounded-2xl bg-grad text-white" data-i18n="m.contact">CONTACT（お問い合わせ）</a>
         </div>
       </div>
     </div>
@@ -266,28 +309,28 @@
             <span>JAPAN POP CULTURE TO THE WORLD</span>
           </div>
 
-          <h1 class="fade-up font-jp text-[30px] leading-[1.35] sm:text-5xl lg:text-[56px] font-black text-slate-900 sm:leading-[1.25] tracking-tight mb-6" style="--d:.08s">
+          <h1 class="fade-up font-jp text-[30px] leading-[1.35] sm:text-5xl lg:text-[56px] font-black text-slate-900 sm:leading-[1.25] tracking-tight mb-6" style="--d:.08s" data-i18n="hero.title">
             日本の<br /><span class="sm:whitespace-nowrap"><span class="text-grad">「好き」と「熱狂」</span>を、</span><br />
             世界中の<span class="relative inline-block">ファン<svg class="absolute left-0 -bottom-2 w-full h-3 text-pop-yellow" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 Q 50 0 98 7" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span>へ。
           </h1>
 
-          <p class="fade-up text-base md:text-lg text-slate-600 font-jp leading-relaxed mb-9 max-w-xl" style="--d:.16s">
+          <p class="fade-up text-base md:text-lg text-slate-600 font-jp leading-relaxed mb-9 max-w-xl" style="--d:.16s" data-i18n="hero.lead">
             アパレルやスニーカー、日本のIPから生まれたプロダクト、そして日本ならではの逸品まで。私たちが誇る「ワクワクする文化」をキュレーションし、国境を越えて世界へ届けます。
           </p>
 
           <div class="fade-up flex flex-wrap items-center gap-4" style="--d:.24s">
             <a href="#about" class="group inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-slate-900 text-white text-sm font-bold tracking-wider hover:bg-pop-indigo transition-colors shadow-lg shadow-slate-900/15">
-              KBTについて見る <span class="transition-transform group-hover:translate-x-1">→</span>
+              <span data-i18n="hero.cta1">KBTについて見る</span> <span class="dir-arrow transition-transform group-hover:translate-x-1">→</span>
             </a>
-            <a href="#contact" class="px-7 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 text-sm font-bold tracking-wider hover:border-pop-blue hover:text-pop-blue transition-colors">
+            <a href="#contact" class="px-7 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 text-sm font-bold tracking-wider hover:border-pop-blue hover:text-pop-blue transition-colors" data-i18n="hero.cta2">
               お問い合わせ
             </a>
           </div>
 
           <ul class="fade-up mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold text-slate-500" style="--d:.32s">
-            <li class="flex items-center gap-1.5"><span class="text-pop-blue">✓</span>丁寧な検品</li>
-            <li class="flex items-center gap-1.5"><span class="text-pop-indigo">✓</span>適正な評価</li>
-            <li class="flex items-center gap-1.5"><span class="text-pop-pink">✓</span>世界へ発送</li>
+            <li class="flex items-center gap-1.5"><span class="text-pop-blue">✓</span><span data-i18n="hero.c1">丁寧な検品</span></li>
+            <li class="flex items-center gap-1.5"><span class="text-pop-indigo">✓</span><span data-i18n="hero.c2">適正な評価</span></li>
+            <li class="flex items-center gap-1.5"><span class="text-pop-pink">✓</span><span data-i18n="hero.c3">世界へ発送</span></li>
           </ul>
         </div>
 
@@ -345,7 +388,7 @@
               <div class="w-8 h-8 rounded-lg bg-rose-50 text-pop-pink flex items-center justify-center font-bold text-sm">★</div>
               <div>
                 <div class="text-xs font-bold text-slate-800">Fashion &amp; Culture</div>
-                <div class="text-[10px] text-slate-400">ジャパニーズカルチャー</div>
+                <div class="text-[10px] text-slate-400" data-i18n="hero.badge">ジャパニーズカルチャー</div>
               </div>
             </div>
 
@@ -376,7 +419,7 @@
   <!-- ==========================================
        MARQUEE
   =========================================== -->
-  <div class="marquee bg-white py-5 border-y border-slate-100 overflow-hidden" aria-hidden="true">
+  <div class="marquee bg-white py-5 border-y border-slate-100 overflow-hidden" aria-hidden="true" dir="ltr">
     <div class="marquee-track text-sm font-extrabold tracking-widest text-slate-400 uppercase">
       <div class="flex items-center gap-12 pr-12">
         <span class="flex items-center gap-3"><span class="w-2.5 h-2.5 rounded-full bg-pop-blue"></span>APPAREL &amp; SNEAKERS</span>
@@ -413,18 +456,18 @@
             ABOUT KBT
           </div>
 
-          <h2 class="font-jp text-2xl sm:text-4xl font-black text-slate-900 leading-snug mb-8">
+          <h2 class="font-jp text-2xl sm:text-4xl font-black text-slate-900 leading-snug mb-8" data-i18n="about.title">
             名前の由来は<span class="text-grad">「KABUTO（兜）」</span>。<br />
             大切なコレクションの価値を守り、<br class="hidden sm:inline" />世界へ届ける。
           </h2>
 
           <div class="grid md:grid-cols-2 gap-x-10 gap-y-4 text-sm sm:text-base text-slate-600 font-jp leading-loose">
-            <p>
+            <p data-i18n="about.p1">
               日本のアニメやヒーロー、そして伝統文化の象徴としても親しまれる「KABUTO（兜）」。KBT株式会社の社名には、ファンが愛する大切なアイテムの価値をしっかりと「守り」、世界中の人々へ届けるという想いが込められています。
             </p>
             <div class="space-y-4">
-              <p>いま、日本のファッションやスニーカー、アニメ・ゲームなど日本発のIPから生まれたプロダクトは、海を越えて世界中のファンから熱い注目を集めています。</p>
-              <p>私たちは日本国内に眠る魅力的なアイテムやカルチャー商材を発掘し、安心できるクオリティで世界中のファンへと繋ぐ架け橋となります。</p>
+              <p data-i18n="about.p2">いま、日本のファッションやスニーカー、アニメ・ゲームなど日本発のIPから生まれたプロダクトは、海を越えて世界中のファンから熱い注目を集めています。</p>
+              <p data-i18n="about.p3">私たちは日本国内に眠る魅力的なアイテムやカルチャー商材を発掘し、安心できるクオリティで世界中のファンへと繋ぐ架け橋となります。</p>
             </div>
           </div>
 
@@ -433,21 +476,21 @@
               <span class="w-11 h-11 rounded-xl bg-sky-100 text-pop-blue flex items-center justify-center font-black group-hover:scale-110 transition-transform">01</span>
               <div>
                 <div class="text-xs font-extrabold text-slate-900">JAPAN QUALITY</div>
-                <div class="text-xs text-slate-500">丁寧な検品・管理体制</div>
+                <div class="text-xs text-slate-500" data-i18n="about.f1">丁寧な検品・管理体制</div>
               </div>
             </div>
             <div class="fade-up group flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 hover:bg-indigo-50 transition-colors" style="--d:.12s">
               <span class="w-11 h-11 rounded-xl bg-indigo-100 text-pop-indigo flex items-center justify-center font-black group-hover:scale-110 transition-transform">02</span>
               <div>
                 <div class="text-xs font-extrabold text-slate-900">CURATED</div>
-                <div class="text-xs text-slate-500">目利きで選ぶカルチャー商材</div>
+                <div class="text-xs text-slate-500" data-i18n="about.f2">目利きで選ぶカルチャー商材</div>
               </div>
             </div>
             <div class="fade-up group flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 hover:bg-rose-50 transition-colors" style="--d:.19s">
               <span class="w-11 h-11 rounded-xl bg-rose-100 text-pop-pink flex items-center justify-center font-black group-hover:scale-110 transition-transform">03</span>
               <div>
                 <div class="text-xs font-extrabold text-slate-900">BORDERLESS</div>
-                <div class="text-xs text-slate-500">日本から世界へ発信</div>
+                <div class="text-xs text-slate-500" data-i18n="about.f3">日本から世界へ発信</div>
               </div>
             </div>
           </div>
@@ -465,8 +508,8 @@
 
       <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
         <span class="text-xs font-extrabold tracking-widest text-pop-blue uppercase">OUR SERVICE</span>
-        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4">事業内容</h2>
-        <p class="text-sm sm:text-base text-slate-600 font-jp">
+        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" data-i18n="svc.title">事業内容</h2>
+        <p class="text-sm sm:text-base text-slate-600 font-jp" data-i18n="svc.lead">
           日本発のアイテムの買取・調達から、越境ECを通じたグローバル展開までを行っています。
         </p>
       </div>
@@ -480,14 +523,14 @@
             <span class="text-5xl font-extrabold text-slate-100 leading-none">01</span>
           </div>
           <div class="text-xs font-extrabold text-pop-blue tracking-wider mb-1">SERVICE 01</div>
-          <h3 class="font-jp text-xl font-black text-slate-900 mb-3">日本発アイテムの買取・調達</h3>
-          <p class="text-sm text-slate-600 font-jp leading-relaxed">
+          <h3 class="font-jp text-xl font-black text-slate-900 mb-3" data-i18n="svc1.title">日本発アイテムの買取・調達</h3>
+          <p class="text-sm text-slate-600 font-jp leading-relaxed" data-i18n="svc1.body">
             アパレル、スニーカー、日本のIP・キャラクター関連のプロダクト、ヴィンテージアイテムなど、国内外で人気の高い日本発のアイテムを適正に評価し、買取・調達を行います。
           </p>
           <div class="mt-6 flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold">#アパレル</span>
-            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold">#スニーカー</span>
-            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold">#日本のIP</span>
+            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold" data-i18n="svc1.tag1">#アパレル</span>
+            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold" data-i18n="svc1.tag2">#スニーカー</span>
+            <span class="px-2.5 py-1 rounded-full bg-sky-50 text-pop-blue text-[11px] font-bold" data-i18n="svc1.tag3">#日本のIP</span>
           </div>
         </article>
 
@@ -499,14 +542,14 @@
             <span class="text-5xl font-extrabold text-slate-100 leading-none">02</span>
           </div>
           <div class="text-xs font-extrabold text-pop-indigo tracking-wider mb-1">SERVICE 02</div>
-          <h3 class="font-jp text-xl font-black text-slate-900 mb-3">クオリティ管理・価値の保全</h3>
-          <p class="text-sm text-slate-600 font-jp leading-relaxed">
+          <h3 class="font-jp text-xl font-black text-slate-900 mb-3" data-i18n="svc2.title">クオリティ管理・価値の保全</h3>
+          <p class="text-sm text-slate-600 font-jp leading-relaxed" data-i18n="svc2.body">
             世界中のファンに安心して日本のアイテムを手にしてもらえるよう、丁寧な状態確認と適切な保管体制を徹底。大切なコレクションの価値を守ります。
           </p>
           <div class="mt-6 flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold">#検品</span>
-            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold">#保管</span>
-            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold">#梱包</span>
+            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold" data-i18n="svc2.tag1">#検品</span>
+            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold" data-i18n="svc2.tag2">#保管</span>
+            <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-pop-indigo text-[11px] font-bold" data-i18n="svc2.tag3">#梱包</span>
           </div>
         </article>
 
@@ -518,13 +561,13 @@
             <span class="text-5xl font-extrabold text-slate-100 leading-none">03</span>
           </div>
           <div class="text-xs font-extrabold text-pop-pink tracking-wider mb-1">SERVICE 03</div>
-          <h3 class="font-jp text-xl font-black text-slate-900 mb-3">越境EC・グローバル展開</h3>
-          <p class="text-sm text-slate-600 font-jp leading-relaxed">
+          <h3 class="font-jp text-xl font-black text-slate-900 mb-3" data-i18n="svc3.title">越境EC・グローバル展開</h3>
+          <p class="text-sm text-slate-600 font-jp leading-relaxed" data-i18n="svc3.body">
             オンラインチャネルとグローバル物流を活用し、日本のファッションやカルチャーを愛する海外のファンへ、日本の魅力的な商品を直接届けます。
           </p>
           <div class="mt-6 flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 rounded-full bg-rose-50 text-pop-pink text-[11px] font-bold">#越境EC</span>
-            <span class="px-2.5 py-1 rounded-full bg-rose-50 text-pop-pink text-[11px] font-bold">#海外発送</span>
+            <span class="px-2.5 py-1 rounded-full bg-rose-50 text-pop-pink text-[11px] font-bold" data-i18n="svc3.tag1">#越境EC</span>
+            <span class="px-2.5 py-1 rounded-full bg-rose-50 text-pop-pink text-[11px] font-bold" data-i18n="svc3.tag2">#海外発送</span>
           </div>
         </article>
       </div>
@@ -533,27 +576,27 @@
       <div class="mt-20 fade-up">
         <div class="text-center mb-10">
           <span class="text-xs font-extrabold tracking-widest text-pop-indigo uppercase">HOW IT WORKS</span>
-          <h3 class="font-jp text-2xl font-black text-slate-900 mt-2">日本から世界へ、届くまで</h3>
+          <h3 class="font-jp text-2xl font-black text-slate-900 mt-2" data-i18n="flow.title">日本から世界へ、届くまで</h3>
         </div>
         <ol class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-0 items-start">
           <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
             <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl">🔍</div>
-            <div><div class="text-[11px] font-extrabold text-pop-blue tracking-widest">STEP 1</div><div class="font-jp font-black text-slate-900">発掘・調達</div><p class="text-xs text-slate-500 font-jp mt-1">国内に眠る逸品を見つけ出す</p></div>
+            <div><div class="text-[11px] font-extrabold text-pop-blue tracking-widest">STEP 1</div><div class="font-jp font-black text-slate-900" data-i18n="flow1.t">発掘・調達</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow1.d">国内に眠る逸品を見つけ出す</p></div>
             <span class="flow-line hidden md:block absolute top-8 left-[calc(50%+40px)] right-[calc(-50%+40px)] h-[2px]" aria-hidden="true"></span>
           </li>
           <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
             <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl">🛡️</div>
-            <div><div class="text-[11px] font-extrabold text-pop-indigo tracking-widest">STEP 2</div><div class="font-jp font-black text-slate-900">検品・保全</div><p class="text-xs text-slate-500 font-jp mt-1">状態を確かめ、価値を守る</p></div>
+            <div><div class="text-[11px] font-extrabold text-pop-indigo tracking-widest">STEP 2</div><div class="font-jp font-black text-slate-900" data-i18n="flow2.t">検品・保全</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow2.d">状態を確かめ、価値を守る</p></div>
             <span class="flow-line hidden md:block absolute top-8 left-[calc(50%+40px)] right-[calc(-50%+40px)] h-[2px]" aria-hidden="true"></span>
           </li>
           <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
             <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl">🛒</div>
-            <div><div class="text-[11px] font-extrabold text-pop-pink tracking-widest">STEP 3</div><div class="font-jp font-black text-slate-900">越境ECで販売</div><p class="text-xs text-slate-500 font-jp mt-1">世界中のファンと出会う</p></div>
+            <div><div class="text-[11px] font-extrabold text-pop-pink tracking-widest">STEP 3</div><div class="font-jp font-black text-slate-900" data-i18n="flow3.t">越境ECで販売</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow3.d">世界中のファンと出会う</p></div>
             <span class="flow-line hidden md:block absolute top-8 left-[calc(50%+40px)] right-[calc(-50%+40px)] h-[2px]" aria-hidden="true"></span>
           </li>
           <li class="relative flex md:flex-col items-center md:text-center gap-4 md:px-4">
             <div class="relative z-10 shrink-0 w-16 h-16 rounded-2xl bg-grad shadow-md flex items-center justify-center text-2xl">🌏</div>
-            <div><div class="text-[11px] font-extrabold text-pop-cyan tracking-widest">STEP 4</div><div class="font-jp font-black text-slate-900">世界へお届け</div><p class="text-xs text-slate-500 font-jp mt-1">ファンの手元へ安心配送</p></div>
+            <div><div class="text-[11px] font-extrabold text-pop-cyan tracking-widest">STEP 4</div><div class="font-jp font-black text-slate-900" data-i18n="flow4.t">世界へお届け</div><p class="text-xs text-slate-500 font-jp mt-1" data-i18n="flow4.d">ファンの手元へ安心配送</p></div>
           </li>
         </ol>
       </div>
@@ -571,8 +614,8 @@
     <div class="relative max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-12 gap-12 items-center">
       <div class="lg:col-span-5 fade-up">
         <span class="text-xs font-extrabold tracking-widest text-sky-300 uppercase">GLOBAL</span>
-        <h2 class="font-jp text-3xl sm:text-4xl font-black mt-2 mb-5 leading-snug">東京から、<br /><span class="text-grad">世界中のファンへ。</span></h2>
-        <p class="text-sm sm:text-base text-slate-300 font-jp leading-loose">
+        <h2 class="font-jp text-3xl sm:text-4xl font-black mt-2 mb-5 leading-snug" data-i18n="global.title">東京から、<br /><span class="text-grad">世界中のファンへ。</span></h2>
+        <p class="text-sm sm:text-base text-slate-300 font-jp leading-loose" data-i18n="global.body">
           北米・欧州・アジアをはじめ、日本のファッションやカルチャーを愛する人は世界中にいます。KBTは東京を拠点に、国境を越えて「好き」を届けます。
         </p>
         <div class="mt-8 flex flex-wrap gap-2">
@@ -584,7 +627,7 @@
 
       <div class="lg:col-span-7 fade-up" style="--d:.1s">
         <div class="relative rounded-3xl bg-white/5 border border-white/10 p-4 sm:p-6 backdrop-blur">
-          <svg viewBox="0 0 600 320" class="w-full h-auto" aria-label="東京から北米・欧州・アジアへのルート図" role="img">
+          <svg viewBox="0 0 600 320" dir="ltr" style="direction: ltr" class="w-full h-auto" aria-label="東京から北米・欧州・アジアへのルート図" role="img">
             <defs>
               <linearGradient id="routeGrad" x1="0" x2="1">
                 <stop offset="0" stop-color="#0EA5E9"/><stop offset=".55" stop-color="#4F46E5"/><stop offset="1" stop-color="#F43F5E"/>
@@ -635,40 +678,40 @@
     <div class="max-w-4xl mx-auto px-5 md:px-8">
       <div class="text-center mb-12 fade-up">
         <span class="text-xs font-extrabold tracking-widest text-pop-blue uppercase">COMPANY PROFILE</span>
-        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2">会社概要</h2>
+        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2" data-i18n="co.title">会社概要</h2>
       </div>
 
       <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/70 fade-up">
         <dl class="divide-y divide-slate-200/80 text-sm sm:text-base font-jp">
           <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-blue"></span>会社名</dt>
-            <dd class="sm:col-span-2 text-slate-800">KBT株式会社（英語表記：KBT Inc.）</dd>
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-blue"></span><span data-i18n="co.name.dt">会社名</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800" data-i18n="co.name.dd">KBT株式会社（英語表記：KBT Inc.）</dd>
           </div>
           <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-indigo"></span>代表者</dt>
-            <dd class="sm:col-span-2 text-slate-800">代表取締役　大村 晃右（Kosuke Ohmura）</dd>
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-indigo"></span><span data-i18n="co.rep.dt">代表者</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800" data-i18n="co.rep.dd">代表取締役　大村 晃右（Kosuke Ohmura）</dd>
           </div>
           <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-pink"></span>設立</dt>
-            <dd class="sm:col-span-2 text-slate-800">2026年10月</dd>
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-pink"></span><span data-i18n="co.est.dt">設立</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800" data-i18n="co.est.dd">2026年10月</dd>
           </div>
           <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-cyan"></span>所在地</dt>
-            <dd class="sm:col-span-2 text-slate-800">
-              <p class="font-medium">〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</p>
-              <p class="text-xs text-slate-400 mt-1">Mitamachi Terrace 4F, 5-34-2 Shiba, Minato-ku, Tokyo 108-0014, Japan</p>
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-cyan"></span><span data-i18n="co.addr.dt">所在地</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800">
+              <p dir="auto" class="font-medium">〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</p>
+              <p dir="ltr" class="text-xs text-slate-400 mt-1">Mitamachi Terrace 4F, 5-34-2 Shiba, Minato-ku, Tokyo 108-0014, Japan</p>
               <a href="https://maps.google.com/?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%8A%9D5-34-2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-3 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-bold text-pop-blue hover:border-pop-blue transition-colors">
-                📍 Googleマップで見る <span aria-hidden="true">↗</span>
+                📍 <span data-i18n="co.map">Googleマップで見る</span> <span aria-hidden="true">↗</span>
               </a>
             </dd>
           </div>
           <div class="py-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-yellow"></span>事業内容</dt>
-            <dd class="sm:col-span-2 text-slate-800">
+            <dt class="font-bold text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pop-yellow"></span><span data-i18n="co.biz.dt">事業内容</span></dt>
+            <dd dir="auto" class="sm:col-span-2 text-slate-800">
               <ul class="space-y-2">
-                <li class="flex gap-2"><span class="text-pop-blue">●</span>アパレル、スニーカー、玩具、キャラクター商品その他日本のカルチャー関連商品の企画、買取、販売及び輸出入</li>
-                <li class="flex gap-2"><span class="text-pop-indigo">●</span>越境EC事業及びグローバルディストリビューション事業</li>
-                <li class="flex gap-2"><span class="text-pop-pink">●</span>日本のポップカルチャーに関する海外プロモーション事業</li>
+                <li class="flex gap-2"><span class="text-pop-blue">●</span><span data-i18n="co.biz1">アパレル、スニーカー、玩具、キャラクター商品その他日本のカルチャー関連商品の企画、買取、販売及び輸出入</span></li>
+                <li class="flex gap-2"><span class="text-pop-indigo">●</span><span data-i18n="co.biz2">越境EC事業及びグローバルディストリビューション事業</span></li>
+                <li class="flex gap-2"><span class="text-pop-pink">●</span><span data-i18n="co.biz3">日本のポップカルチャーに関する海外プロモーション事業</span></li>
               </ul>
             </dd>
           </div>
@@ -684,13 +727,13 @@
     <div class="max-w-3xl mx-auto px-5 md:px-8">
       <div class="text-center mb-12 fade-up">
         <span class="text-xs font-extrabold tracking-widest text-pop-blue uppercase">CONTACT US</span>
-        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-3">お問い合わせ</h2>
-        <p class="text-sm text-slate-600 font-jp">
+        <h2 class="font-jp text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-3" data-i18n="ct.title">お問い合わせ</h2>
+        <p class="text-sm text-slate-600 font-jp" data-i18n="ct.lead">
           お取引や事業提携、その他のお問い合わせは以下のフォームよりお気軽にご連絡ください。
         </p>
-        <p class="mt-4 inline-flex items-start gap-2 text-left px-4 py-3 rounded-2xl bg-amber-50 border border-amber-200 text-[12px] leading-relaxed text-amber-800 font-jp">
+        <p class="mt-4 inline-flex items-start gap-2 text-start px-4 py-3 rounded-2xl bg-amber-50 border border-amber-200 text-[12px] leading-relaxed text-amber-800 font-jp">
           <span aria-hidden="true">⚠️</span>
-          <span>営業・勧誘・広告掲載等のご案内はお断りしております。また、自動化ツールやAIエージェントによる送信はご遠慮ください。これらのお問い合わせには返信いたしかねます。</span>
+          <span data-i18n="ct.notice">営業・勧誘・広告掲載等のご案内はお断りしております。また、自動化ツールやAIエージェントによる送信はご遠慮ください。これらのお問い合わせには返信いたしかねます。</span>
         </p>
       </div>
 
@@ -699,62 +742,63 @@
           <!-- ▼ Web3Forms の Access Key（info@kbt-inc.jp 宛てに発行したもの）に置き換えてください。公開しても安全な値です。 -->
           <input type="hidden" name="access_key" value="9024d44e-f407-47a7-bb0a-313af5e5e32c">
           <input type="hidden" name="from_name" value="KBT Website">
+          <input type="hidden" name="language" value="ja">
           <input type="hidden" name="subject" value="">
           <!-- Honeypot: 人間には見えない欄。入力があればbotとして破棄 -->
-          <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+          <div class="absolute w-px h-px overflow-hidden opacity-0 pointer-events-none" style="clip: rect(0 0 0 0); clip-path: inset(50%);" aria-hidden="true">
             <label for="f-botcheck">この欄は空のままにしてください</label>
             <input id="f-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div class="field">
-              <label for="f-name" class="block text-xs font-bold text-slate-700 mb-2">お名前 <span class="text-pop-pink">*</span></label>
-              <input id="f-name" name="name" type="text" required maxlength="80" autocomplete="name" placeholder="山田 太郎" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
-              <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">お名前を入力してください</p>
+              <label for="f-name" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.name">お名前 <span class="text-pop-pink">*</span></label>
+              <input id="f-name" name="name" type="text" required maxlength="80" autocomplete="name" placeholder="山田 太郎" data-i18n-ph="ph.name" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+              <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5" data-i18n="e.name">お名前を入力してください</p>
             </div>
             <div class="field">
-              <label for="f-company" class="block text-xs font-bold text-slate-700 mb-2">会社名 <span class="text-slate-400 font-medium">（任意）</span></label>
-              <input id="f-company" name="company" type="text" maxlength="120" autocomplete="organization" placeholder="株式会社〇〇" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+              <label for="f-company" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.company">会社名 <span class="text-slate-400 font-medium">（任意）</span></label>
+              <input id="f-company" name="company" type="text" maxlength="120" autocomplete="organization" placeholder="株式会社〇〇" data-i18n-ph="ph.company" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
             </div>
           </div>
 
           <div class="field">
-            <label for="f-email" class="block text-xs font-bold text-slate-700 mb-2">メールアドレス <span class="text-pop-pink">*</span></label>
-            <input id="f-email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="info@example.com" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
-            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">正しいメールアドレスを入力してください</p>
+            <label for="f-email" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.email">メールアドレス <span class="text-pop-pink">*</span></label>
+            <input id="f-email" dir="ltr" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="info@example.com" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white" />
+            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5" data-i18n="e.email">正しいメールアドレスを入力してください</p>
           </div>
 
           <div class="field">
-            <label for="f-topic" class="block text-xs font-bold text-slate-700 mb-2">お問い合わせ種別</label>
+            <label for="f-topic" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.topic">お問い合わせ種別</label>
             <div class="flex flex-wrap gap-2" role="radiogroup" aria-labelledby="f-topic">
-              <label class="cursor-pointer"><input type="radio" name="topic" value="お取引について" class="peer sr-only" checked><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-blue peer-checked:text-white peer-checked:border-pop-blue peer-focus-visible:ring-4 peer-focus-visible:ring-sky-200 transition-colors">お取引について</span></label>
-              <label class="cursor-pointer"><input type="radio" name="topic" value="事業提携" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-indigo peer-checked:text-white peer-checked:border-pop-indigo peer-focus-visible:ring-4 peer-focus-visible:ring-indigo-200 transition-colors">事業提携</span></label>
-              <label class="cursor-pointer"><input type="radio" name="topic" value="その他" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-pink peer-checked:text-white peer-checked:border-pop-pink peer-focus-visible:ring-4 peer-focus-visible:ring-rose-200 transition-colors">その他</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="お取引について" class="peer sr-only" checked><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-blue peer-checked:text-white peer-checked:border-pop-blue peer-focus-visible:ring-4 peer-focus-visible:ring-sky-200 transition-colors" data-i18n="f.t1">お取引について</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="事業提携" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-indigo peer-checked:text-white peer-checked:border-pop-indigo peer-focus-visible:ring-4 peer-focus-visible:ring-indigo-200 transition-colors" data-i18n="f.t2">事業提携</span></label>
+              <label class="cursor-pointer"><input type="radio" name="topic" value="その他" class="peer sr-only"><span class="inline-block px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 peer-checked:bg-pop-pink peer-checked:text-white peer-checked:border-pop-pink peer-focus-visible:ring-4 peer-focus-visible:ring-rose-200 transition-colors" data-i18n="f.t3">その他</span></label>
             </div>
           </div>
 
           <div class="field">
-            <label for="f-message" class="block text-xs font-bold text-slate-700 mb-2">お問い合わせ内容 <span class="text-pop-pink">*</span></label>
-            <textarea id="f-message" name="message" rows="5" required minlength="10" maxlength="3000" placeholder="お問い合わせ内容をご記入ください" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white"></textarea>
-            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5">お問い合わせ内容を10文字以上でご記入ください（URLは2件まで）</p>
+            <label for="f-message" class="block text-xs font-bold text-slate-700 mb-2" data-i18n="f.message">お問い合わせ内容 <span class="text-pop-pink">*</span></label>
+            <textarea id="f-message" name="message" rows="5" required minlength="10" maxlength="3000" placeholder="お問い合わせ内容をご記入ください" data-i18n-ph="ph.message" class="field-input w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-pop-blue focus:bg-white"></textarea>
+            <p class="field-error text-[11px] font-bold text-pop-pink mt-1.5" data-i18n="e.message">お問い合わせ内容を10文字以上でご記入ください（URLは2件まで）</p>
           </div>
 
           <div class="field space-y-3 rounded-2xl bg-slate-50 border border-slate-200 p-4">
             <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-700 font-jp leading-relaxed">
               <input id="f-not-sales" name="not_sales" type="checkbox" required value="はい" class="mt-0.5 w-4 h-4 accent-pop-blue shrink-0">
-              <span>営業・勧誘・広告を目的としたお問い合わせではありません <span class="text-pop-pink">*</span></span>
+              <span data-i18n="f.c1">営業・勧誘・広告を目的としたお問い合わせではありません <span class="text-pop-pink">*</span></span>
             </label>
             <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-700 font-jp leading-relaxed">
               <input id="f-privacy" name="privacy_agreed" type="checkbox" required value="同意" class="mt-0.5 w-4 h-4 accent-pop-blue shrink-0">
-              <span><button type="button" class="open-privacy underline font-bold text-pop-blue hover:text-pop-indigo">プライバシーポリシー</button>に同意します <span class="text-pop-pink">*</span></span>
+              <span data-i18n="f.c2"><button type="button" class="open-privacy underline font-bold text-pop-blue hover:text-pop-indigo">プライバシーポリシー</button>に同意します <span class="text-pop-pink">*</span></span>
             </label>
-            <p class="field-error text-[11px] font-bold text-pop-pink">上記の項目にチェックしてください</p>
+            <p class="field-error text-[11px] font-bold text-pop-pink" data-i18n="e.check">上記の項目にチェックしてください</p>
           </div>
 
           <p id="form-error" class="hidden text-center text-xs font-bold text-pop-pink" role="alert"></p>
 
           <div class="text-center">
             <button id="submit-btn" type="submit" class="group relative w-full sm:w-auto min-w-[240px] px-8 py-4 rounded-2xl bg-grad text-white text-sm font-bold tracking-wider shadow-lg shadow-pop-blue/25 hover:shadow-xl hover:shadow-pop-indigo/30 hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-70 disabled:pointer-events-none">
-              <span class="btn-label inline-flex items-center gap-2">送信する <span class="transition-transform group-hover:translate-x-1">→</span></span>
+              <span class="btn-label inline-flex items-center gap-2" data-i18n="form.submit">送信する <span class="dir-arrow transition-transform group-hover:translate-x-1">→</span></span>
             </button>
           </div>
         </form>
@@ -764,9 +808,9 @@
           <div class="pop-in mx-auto w-20 h-20 rounded-full bg-grad flex items-center justify-center text-white shadow-lg shadow-pop-blue/30">
             <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h3 class="font-jp text-2xl font-black text-slate-900 mt-6">送信が完了しました！</h3>
-          <p class="text-sm text-slate-600 font-jp mt-3 leading-relaxed">お問い合わせありがとうございます。<br />内容を確認の上、担当者よりご連絡いたします。</p>
-          <button id="form-again" type="button" class="mt-8 px-6 py-3 rounded-2xl border border-slate-200 text-xs font-bold text-slate-600 hover:border-pop-blue hover:text-pop-blue transition-colors">別のお問い合わせをする</button>
+          <h3 class="font-jp text-2xl font-black text-slate-900 mt-6" data-i18n="ok.title">送信が完了しました！</h3>
+          <p class="text-sm text-slate-600 font-jp mt-3 leading-relaxed" data-i18n="ok.body">お問い合わせありがとうございます。<br />内容を確認の上、担当者よりご連絡いたします。</p>
+          <button id="form-again" type="button" class="mt-8 px-6 py-3 rounded-2xl border border-slate-200 text-xs font-bold text-slate-600 hover:border-pop-blue hover:text-pop-blue transition-colors" data-i18n="ok.again">別のお問い合わせをする</button>
         </div>
       </div>
     </div>
@@ -788,8 +832,8 @@
             </svg>
           </div>
           <div>
-            <div class="text-base font-extrabold text-white tracking-wider">KBT株式会社</div>
-            <div class="text-xs text-slate-400">〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</div>
+            <div dir="auto" class="text-base font-extrabold text-white tracking-wider" data-i18n="foot.company">KBT株式会社</div>
+            <div dir="auto" class="text-xs text-slate-400">〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</div>
           </div>
         </div>
 
@@ -798,13 +842,13 @@
           <a href="#service" class="hover:text-white transition-colors">SERVICE</a>
           <a href="#global" class="hover:text-white transition-colors">GLOBAL</a>
           <a href="#company" class="hover:text-white transition-colors">COMPANY</a>
-          <button type="button" class="open-privacy hover:text-white transition-colors">プライバシーポリシー</button>
+          <button type="button" class="open-privacy hover:text-white transition-colors" data-i18n="foot.privacy">プライバシーポリシー</button>
         </div>
       </div>
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
-        <p>© 2026 KBT Inc. All Rights Reserved.</p>
-        <p class="text-[11px] tracking-widest">JAPAN POP CULTURE TO THE WORLD</p>
+        <p dir="ltr">© 2026 KBT Inc. All Rights Reserved.</p>
+        <p dir="ltr" class="text-[11px] tracking-widest">JAPAN POP CULTURE TO THE WORLD</p>
       </div>
     </div>
   </footer>
@@ -820,10 +864,10 @@
   <div id="privacy-modal" class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 opacity-0" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
     <div class="modal-panel bg-white rounded-3xl max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
-        <h3 id="privacy-title" class="font-jp text-lg font-black text-slate-900">プライバシーポリシー</h3>
+        <h3 id="privacy-title" class="font-jp text-lg font-black text-slate-900" data-i18n="pp.title">プライバシーポリシー</h3>
         <button id="close-privacy" type="button" aria-label="閉じる" class="w-9 h-9 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 text-2xl leading-none flex items-center justify-center">&times;</button>
       </div>
-      <div class="p-6 overflow-y-auto overscroll-contain space-y-5 text-xs sm:text-sm text-slate-600 leading-relaxed font-jp">
+      <div class="p-6 overflow-y-auto overscroll-contain space-y-5 text-xs sm:text-sm text-slate-600 leading-relaxed font-jp" data-i18n="pp.body">
         <p>KBT株式会社（以下「当社」といいます）は、お客さまの個人情報の重要性を認識し、以下のとおり個人情報保護方針を定め、個人情報の適切な取り扱いと保護に努めます。</p>
         <div>
           <h4 class="font-bold text-slate-900 mb-1">1. 個人情報の取得</h4>
@@ -859,11 +903,106 @@
     </div>
   </div>
 
+  <script src="./i18n.js"></script>
   <script>
   (() => {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const $ = (s, el = document) => el.querySelector(s);
     const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+    // 0. i18n — 翻訳文は i18n.js（window.KBT_I18N）。日本語はページ本体の文言をそのまま使う
+    const I18N = window.KBT_I18N || {};
+    const LANGS = ['ja', 'en', 'zh-Hans', 'zh-Hant', 'ko', 'vi', 'ar'];
+    const LABELS = { ja: ['JA', '日本語'], en: ['EN', 'English'], 'zh-Hans': ['简', '简体中文'], 'zh-Hant': ['繁', '繁體中文'], ko: ['KO', '한국어'], vi: ['VI', 'Tiếng Việt'], ar: ['AR', 'العربية'] };
+    const original = new Map();
+    $$('[data-i18n]').forEach((el) => original.set(el, el.innerHTML));
+    $$('[data-i18n-ph]').forEach((el) => original.set(el, el.placeholder));
+    const metaDesc = $('meta[name="description"]');
+    const metaOg = $('meta[property="og:title"]');
+    const baseMeta = { title: document.title, desc: metaDesc.content, og: metaOg.content };
+    let lang = 'ja';
+    const t = (key) => (I18N[lang] && I18N[lang][key]) ?? (I18N.ja && I18N.ja[key]) ?? key;
+
+    const detectLang = () => {
+      const q = new URLSearchParams(location.search).get('lang');
+      if (LANGS.includes(q)) return q;
+      try { const saved = localStorage.getItem('kbt_lang'); if (LANGS.includes(saved)) return saved; } catch (_) {}
+      for (const l of (navigator.languages || [navigator.language || ''])) {
+        const v = l.toLowerCase();
+        if (v.startsWith('ja')) return 'ja';
+        if (v.startsWith('zh')) return /hant|tw|hk|mo/.test(v) ? 'zh-Hant' : 'zh-Hans';
+        if (v.startsWith('ko')) return 'ko';
+        if (v.startsWith('vi')) return 'vi';
+        if (v.startsWith('ar')) return 'ar';
+        if (v.startsWith('en')) return 'en';
+      }
+      return 'en';
+    };
+
+    const ensureArabicFont = () => {
+      if ($('#font-ar')) return;
+      const l = document.createElement('link');
+      l.id = 'font-ar'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap';
+      document.head.appendChild(l);
+    };
+
+    const applyLang = (next, { save = true } = {}) => {
+      lang = LANGS.includes(next) ? next : 'ja';
+      const dict = I18N[lang] || {};
+      const root = document.documentElement;
+      root.lang = lang;
+      root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      if (lang === 'ar') ensureArabicFont();
+      $$('[data-i18n]').forEach((el) => {
+        const v = lang === 'ja' ? original.get(el) : dict[el.dataset.i18n];
+        el.innerHTML = v ?? original.get(el);
+      });
+      $$('[data-i18n-ph]').forEach((el) => {
+        const v = lang === 'ja' ? original.get(el) : dict[el.dataset.i18nPh];
+        el.placeholder = v ?? original.get(el);
+      });
+      document.title = lang === 'ja' ? baseMeta.title : (dict['meta.title'] || baseMeta.title);
+      metaDesc.content = lang === 'ja' ? baseMeta.desc : (dict['meta.desc'] || baseMeta.desc);
+      metaOg.content = document.title;
+      $('#lang-code').textContent = LABELS[lang][0];
+      $('#lang-current').textContent = LABELS[lang][1];
+      $$('.lang-opt').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.lang === lang)));
+      const langField = $('#contact-form [name="language"]');
+      if (langField) langField.value = lang;
+      if (save) {
+        try { localStorage.setItem('kbt_lang', lang); } catch (_) {}
+        const url = new URL(location.href);
+        if (lang === 'ja') url.searchParams.delete('lang'); else url.searchParams.set('lang', lang);
+        history.replaceState(null, '', url);
+      }
+    };
+
+    // Language menu
+    const langBtn = $('#lang-btn');
+    const langMenu = $('#lang-menu');
+    const setLangMenu = (open) => {
+      langMenu.classList.toggle('hidden', !open);
+      langBtn.setAttribute('aria-expanded', String(open));
+      if (open) ($('.lang-opt[aria-checked="true"]', langMenu) || $('.lang-opt', langMenu)).focus();
+    };
+    langBtn.addEventListener('click', (e) => { e.stopPropagation(); setLangMenu(langMenu.classList.contains('hidden')); });
+    langMenu.addEventListener('click', (e) => {
+      const opt = e.target.closest('.lang-opt');
+      if (!opt) return;
+      applyLang(opt.dataset.lang);
+      setLangMenu(false);
+      langBtn.focus();
+    });
+    langMenu.addEventListener('keydown', (e) => {
+      const opts = $$('.lang-opt', langMenu);
+      const i = opts.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); opts[(i + 1) % opts.length].focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); opts[(i - 1 + opts.length) % opts.length].focus(); }
+    });
+    document.addEventListener('click', (e) => { if (!e.target.closest('#lang-wrap')) setLangMenu(false); });
+
+    applyLang(detectLang(), { save: false });
 
     // 1. Reveal on scroll
     const io = new IntersectionObserver((entries) => {
@@ -907,7 +1046,7 @@
       mobileMenu.classList.toggle('is-open', open);
       document.body.classList.toggle('menu-open', open);
       menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      menuBtn.setAttribute('aria-label', open ? t('aria.menuClose') : t('aria.menuOpen'));
     };
     menuBtn.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('is-open')));
     $$('.mobile-link').forEach((a) => a.addEventListener('click', () => setMenu(false)));
@@ -1014,26 +1153,27 @@
       if (invalid.length) { invalid[0].focus(); return; }
 
       // ページを開いてから極端に早い送信は自動入力とみなす
-      if (Date.now() - loadedAt < 4000) { showError('入力内容をご確認のうえ、もう一度送信してください。'); return; }
+      if (Date.now() - loadedAt < 4000) { showError(t('err.fast')); return; }
 
       // 連続送信の防止（同じブラウザから60秒以内）
       let last = 0;
       try { last = Number(localStorage.getItem('kbt_contact_sent_at')) || 0; } catch (_) {}
-      if (Date.now() - last < COOLDOWN_MS) { showError('先ほど送信済みです。しばらく時間をおいてから再度お試しください。'); return; }
+      if (Date.now() - last < COOLDOWN_MS) { showError(t('err.cooldown')); return; }
 
       const key = form.access_key.value;
       if (!key || key.startsWith('YOUR_')) {
-        showError('現在フォームの準備中です。恐れ入りますが時間をおいて再度お試しください。');
+        showError(t('err.notReady'));
         console.warn('Web3Forms access key is not set.');
         return;
       }
 
 
       const topic = form.querySelector('[name="topic"]:checked')?.value || 'その他';
-      form.subject.value = `【KBT お問い合わせ】${topic} - ${form.elements.name.value.trim()}様`;
+      form.subject.value = `【KBT お問い合わせ】${topic} - ${form.elements.name.value.trim()}様 [${LABELS[lang][1]}]`;
+      form.elements.language.value = LABELS[lang][1];
 
       btn.disabled = true;
-      $('.btn-label', btn).textContent = '送信中…';
+      $('.btn-label', btn).textContent = t('form.sending');
       try {
         const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         const data = await res.json().catch(() => ({}));
@@ -1041,10 +1181,10 @@
         try { localStorage.setItem('kbt_contact_sent_at', String(Date.now())); } catch (_) {}
         showSuccess();
       } catch (err) {
-        showError('送信に失敗しました。お手数ですが時間をおいて再度お試しください。');
+        showError(t('err.failed'));
       } finally {
         btn.disabled = false;
-        $('.btn-label', btn).textContent = '送信する →';
+        $('.btn-label', btn).innerHTML = lang === 'ja' ? original.get($('.btn-label', btn)) : t('form.submit');
       }
     });
 
@@ -1071,11 +1211,11 @@
       document.body.classList.remove('is-locked');
       setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); lastFocus?.focus(); }, 250);
     };
-    $$('.open-privacy').forEach((b) => b.addEventListener('click', openModal));
+    document.addEventListener('click', (e) => { if (e.target.closest('.open-privacy')) openModal(); });
     $('#close-privacy').addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { closeModal(); setMenu(false); }
+      if (e.key === 'Escape') { closeModal(); setMenu(false); if (!langMenu.classList.contains('hidden')) { setLangMenu(false); langBtn.focus(); } }
     });
   })();
   </script>
