@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KBT Inc. | Timeless Japanese Culture to the World</title>
+  <meta name="description" content="KBT株式会社（KBT Inc.）は、日本が誇る希少なコレクターズアイテムやポップカルチャーの結晶を「現代の文化財」としてキュレーションし、世界中のコレクターへ届けます。">
+  <meta name="theme-color" content="#0A0A0E">
+  <meta property="og:title" content="KBT Inc. | Beyond Borders, Preserving Excellence.">
+  <meta property="og:description" content="日本のカルチャーを、世界の至宝へ。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.5"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sumi: '#0A0A0E', hakuji: '#F7F7F5', gold: '#C5A059', ink: '#141417', muted: '#8A8A93'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['Inter', '"Noto Sans JP"', 'sans-serif'],
+            jp: ['"Noto Sans JP"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-sumi text-hakuji font-sans antialiased">
+
+  <!-- ============ Intro ============ -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro-panel intro-top"></div>
+    <div class="intro-panel intro-bottom"></div>
+    <div class="intro-inner">
+      <div class="intro-logo">
+        <span class="intro-char">K</span><span class="intro-char">B</span><span class="intro-char">T</span>
+      </div>
+      <div class="intro-line"></div>
+      <div class="intro-sub">TIMELESS JAPANESE CULTURE TO THE WORLD</div>
+    </div>
+  </div>
+
+  <!-- ============ Header ============ -->
+  <header id="header" class="fixed inset-x-0 top-0 z-50">
+    <div class="header-inner mx-auto flex max-w-[1440px] items-center justify-between px-6 md:px-12">
+      <a href="#top" class="logo" aria-label="KBT Inc. トップへ">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M6 26 C 6 14, 14 8, 20 8 C 26 8, 34 14, 34 26" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M20 8 C 14 2, 6 2, 3 6 M20 8 C 26 2, 34 2, 37 6" fill="none" stroke="#C5A059" stroke-width="1.2"/>
+          <path d="M3 26 H37 M8 31 H32" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <span class="logo-type">KBT</span>
+      </a>
+      <nav class="hidden md:block" aria-label="メインナビゲーション">
+        <ul class="nav-list">
+          <li><a href="#philosophy">PHILOSOPHY</a></li>
+          <li><a href="#business">BUSINESS</a></li>
+          <li><a href="#global">GLOBAL</a></li>
+          <li><a href="#company">COMPANY</a></li>
+          <li><a href="#contact" class="nav-cta">CONTACT</a></li>
+        </ul>
+      </nav>
+      <button id="menuBtn" class="menu-btn md:hidden" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+    <ul>
+      <li><a href="#philosophy">PHILOSOPHY</a></li>
+      <li><a href="#business">BUSINESS</a></li>
+      <li><a href="#global">GLOBAL</a></li>
+      <li><a href="#company">COMPANY</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </div>
+
+  <main id="top">
+    <!-- ============ Hero ============ -->
+    <section id="hero" class="relative flex min-h-[100svh] items-center overflow-hidden">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero-vignette" aria-hidden="true"></div>
+
+      <div class="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-12">
+        <p class="eyebrow hero-fade">KBT Inc. — Est. 2026, Tokyo</p>
+        <h1 class="hero-title">
+          <span class="line"><span class="line-inner">BEYOND BORDERS,</span></span>
+          <span class="line"><span class="line-inner"><em>Preserving</em> Excellence.</span></span>
+        </h1>
+        <p class="hero-jp hero-fade">日本のカルチャーを、世界の至宝へ。</p>
+        <p class="hero-lead hero-fade">
+          日本が生み出した希少なコレクターズアイテムやポップカルチャーの結晶を、<br class="hidden md:inline">
+          独自の審美眼でキュレーションし、世界中の熱狂へと繋ぐ。
+        </p>
+      </div>
+
+      <div class="scroll-cue hero-fade" aria-hidden="true">
+        <span>SCROLL</span>
+        <i></i>
+      </div>
+      <div class="hero-coord hero-fade" aria-hidden="true">35.6476° N / 139.7480° E</div>
+    </section>
+
+    <!-- ============ Philosophy ============ -->
+    <section id="philosophy" class="section-light relative">
+      <div class="mx-auto grid max-w-[1440px] gap-16 px-6 py-32 md:grid-cols-12 md:px-12 md:py-48">
+        <div class="md:col-span-5">
+          <p class="section-label reveal-up">01 — THE SPIRIT OF "KABUTO"</p>
+          <h2 class="section-title mask-reveal"><span>ORIGIN &amp;<br>VISION</span></h2>
+          <div class="kabuto-figure reveal-up" aria-hidden="true">
+            <svg viewBox="0 0 320 240" class="w-full">
+              <g fill="none" stroke-linecap="round">
+                <path class="draw" d="M60 170 C 60 95, 110 60, 160 60 C 210 60, 260 95, 260 170" stroke="#141417" stroke-width="0.8"/>
+                <path class="draw" d="M80 170 C 80 108, 120 78, 160 78 C 200 78, 240 108, 240 170" stroke="#141417" stroke-width="0.5" opacity=".5"/>
+                <path class="draw" d="M100 170 C 100 122, 130 96, 160 96 C 190 96, 220 122, 220 170" stroke="#141417" stroke-width="0.5" opacity=".35"/>
+                <path class="draw" d="M160 60 V 170" stroke="#141417" stroke-width="0.5" opacity=".35"/>
+                <path class="draw" d="M160 60 C 130 20, 70 10, 30 34" stroke="#C5A059" stroke-width="1"/>
+                <path class="draw" d="M160 60 C 190 20, 250 10, 290 34" stroke="#C5A059" stroke-width="1"/>
+                <path class="draw" d="M30 170 H 290" stroke="#141417" stroke-width="0.8"/>
+                <path class="draw" d="M40 182 C 90 200, 230 200, 280 182" stroke="#141417" stroke-width="0.5" opacity=".5"/>
+                <path class="draw" d="M55 196 C 100 214, 220 214, 265 196" stroke="#141417" stroke-width="0.5" opacity=".35"/>
+              </g>
+              <circle cx="160" cy="60" r="3" fill="#C5A059"/>
+            </svg>
+          </div>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 md:pt-10">
+          <h3 class="jp-heading reveal-up">兜（KABUTO）に込めた誇りと、<br>価値の継承</h3>
+          <div class="gold-rule reveal-up"></div>
+          <p class="body-jp reveal-up">
+            古来より日本の「兜（KABUTO）」は、単なる防具ではなく、職人の粋を集めた美術品であり、誇りの象徴でした。
+          </p>
+          <p class="body-jp reveal-up">
+            私たちKBTは、現代の日本が世界に誇るトレーディングカード、希少な玩具、カルチャーアイテムを「次世代へ受け継ぐべき価値ある資産」と捉えています。確かな目利きでその価値を守り、国境を越えて世界中のコレクターへと届けることが私たちの使命です。
+          </p>
+          <p class="signature reveal-up">Timeless Japanese Culture to the World.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Business ============ -->
+    <section id="business" class="relative">
+      <div class="mx-auto max-w-[1440px] px-6 py-32 md:px-12 md:py-48">
+        <div class="mb-20 flex flex-col gap-8 md:mb-28 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="section-label reveal-up">02 — BUSINESS</p>
+            <h2 class="section-title mask-reveal"><span>WHAT WE DO</span></h2>
+          </div>
+          <p class="body-jp max-w-md text-muted reveal-up">
+            日本独自の希少なコレクターズアイテムを「現代の文化財」として再定義し、調達から世界への提供までを一貫して担います。
+          </p>
+        </div>
+
+        <div class="grid gap-px md:grid-cols-3 business-grid">
+          <article class="biz-card">
+            <div class="biz-head">
+              <span class="biz-num">01</span>
+              <svg class="biz-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 5 L41 18 L24 43 L7 18 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+                <path d="M7 18 H41 M17 18 L24 43 L31 18 M17 18 L24 5 L31 18" fill="none" stroke="currentColor" stroke-width=".7" opacity=".6"/>
+              </svg>
+            </div>
+            <h3 class="biz-title">Curation &amp; Acquisition</h3>
+            <p class="biz-jp">希少アイテムのキュレーション・調達</p>
+            <p class="biz-body">日本国内に眠る希少なコレクターズアイテム、ヴィンテージトイ、トレーディングカード等の価値を適正に見極め、独自のネットワークを通じて調達・キュレーションを行います。</p>
+          </article>
+
+          <article class="biz-card">
+            <div class="biz-head">
+              <span class="biz-num">02</span>
+              <svg class="biz-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 5 L40 11 V24 C40 33 33 40 24 43 C15 40 8 33 8 24 V11 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+                <path d="M17 24 L22 29 L32 18" fill="none" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <h3 class="biz-title">Authentication &amp; Archive</h3>
+            <p class="biz-jp">価値の保全・アーカイブ</p>
+            <p class="biz-body">世界中のコレクターが安心して日本のカルチャーを手にできるよう、厳格なクオリティチェックと適切な管理体制を追求し、アイテムの持つ本来の資産価値を守ります。</p>
+          </article>
+
+          <article class="biz-card">
+            <div class="biz-head">
+              <span class="biz-num">03</span>
+              <svg class="biz-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="1"/>
+                <ellipse cx="24" cy="24" rx="8" ry="18" fill="none" stroke="currentColor" stroke-width=".7" opacity=".6"/>
+                <path d="M6 24 H42 M9 15 H39 M9 33 H39" fill="none" stroke="currentColor" stroke-width=".7" opacity=".6"/>
+              </svg>
+            </div>
+            <h3 class="biz-title">Global Distribution</h3>
+            <p class="biz-jp">越境EC・グローバル展開</p>
+            <p class="biz-body">デジタルの力とグローバルな流通ネットワークを駆使し、日本のポップカルチャーやクラフトマンシップを愛する世界中の人々へ、ボーダレスに価値を届けます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Global ============ -->
+    <section id="global" class="global-band relative overflow-hidden">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>FROM TOKYO TO THE WORLD</span><span class="dot">◆</span>
+          <span>FROM TOKYO TO THE WORLD</span><span class="dot">◆</span>
+          <span>FROM TOKYO TO THE WORLD</span><span class="dot">◆</span>
+        </div>
+      </div>
+
+      <div class="relative z-10 mx-auto max-w-[1440px] px-6 py-28 md:px-12 md:py-40">
+        <div class="grid gap-16 md:grid-cols-12">
+          <div class="md:col-span-5">
+            <p class="section-label reveal-up">03 — GLOBAL VISION</p>
+            <h2 class="section-title mask-reveal"><span>FROM TOKYO<br>TO THE WORLD</span></h2>
+            <p class="body-jp mt-10 reveal-up">
+              東京・芝を拠点に、北米・欧州・アジアをはじめとする世界中のコレクターズマーケットへ日本のカルチャーを発信します。
+            </p>
+          </div>
+          <div class="md:col-span-7">
+            <svg id="routeMap" class="route-map reveal-up" viewBox="0 0 600 340" aria-hidden="true">
+              <defs>
+                <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <circle cx="1" cy="1" r=".8" fill="#F7F7F5" opacity=".12"/>
+                </pattern>
+              </defs>
+              <rect width="600" height="340" fill="url(#dots)"/>
+              <path class="route" d="M470 150 C 420 40, 200 30, 120 120"/>
+              <path class="route" d="M470 150 C 420 90, 330 80, 290 110"/>
+              <path class="route" d="M470 150 C 450 200, 420 230, 400 240"/>
+              <g class="node node-tokyo"><circle cx="470" cy="150" r="5"/><circle class="pulse" cx="470" cy="150" r="5"/></g>
+              <g class="node"><circle cx="120" cy="120" r="3"/></g>
+              <g class="node"><circle cx="290" cy="110" r="3"/></g>
+              <g class="node"><circle cx="400" cy="240" r="3"/></g>
+              <text x="482" y="146" class="map-label gold">TOKYO</text>
+              <text x="70" y="108" class="map-label">NORTH AMERICA</text>
+              <text x="262" y="98" class="map-label">EUROPE</text>
+              <text x="410" y="262" class="map-label">ASIA</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="keywords mt-20 grid grid-cols-2 gap-px md:mt-28 md:grid-cols-4">
+          <div class="kw reveal-up"><span class="kw-k">Base</span><span class="kw-v">Shiba, Tokyo</span></div>
+          <div class="kw reveal-up"><span class="kw-k">Markets</span><span class="kw-v">NA · EU · Asia</span></div>
+          <div class="kw reveal-up"><span class="kw-k">Channel</span><span class="kw-v">Cross-border EC</span></div>
+          <div class="kw reveal-up"><span class="kw-k">Promise</span><span class="kw-v">Curated &amp; Preserved</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Company ============ -->
+    <section id="company" class="section-light">
+      <div class="mx-auto grid max-w-[1440px] gap-16 px-6 py-32 md:grid-cols-12 md:px-12 md:py-48">
+        <div class="md:col-span-4">
+          <p class="section-label reveal-up">04 — COMPANY</p>
+          <h2 class="section-title mask-reveal"><span>PROFILE</span></h2>
+          <p class="body-jp text-muted reveal-up mt-6">会社概要</p>
+        </div>
+        <dl class="profile md:col-span-8">
+          <div class="row reveal-up"><dt>会社名<small>Company</small></dt><dd>KBT株式会社<span class="en">KBT Inc.</span></dd></div>
+          <div class="row reveal-up"><dt>設立<small>Established</small></dt><dd>2026年10月<span class="en">October 2026</span></dd></div>
+          <div class="row reveal-up"><dt>代表者<small>Representative</small></dt><dd>代表取締役　大村 晃右<span class="en">Kosuke Ohmura, CEO</span></dd></div>
+          <div class="row reveal-up"><dt>所在地<small>Address</small></dt><dd>〒108-0014<br>東京都港区芝5-34-2 ミタマチテラス 4F<span class="en">Mitamachi Terrace 4F, 5-34-2 Shiba, Minato-ku, Tokyo 108-0014, Japan</span></dd></div>
+          <div class="row reveal-up"><dt>事業内容<small>Business</small></dt>
+            <dd>
+              <ul class="biz-list">
+                <li>コレクターズアイテム・ホビー商材・カルチャー関連商品の企画、買取、販売及び輸出入</li>
+                <li>越境EC事業及びグローバルディストリビューション事業</li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ Contact ============ -->
+    <section id="contact" class="relative">
+      <div class="mx-auto grid max-w-[1440px] gap-16 px-6 py-32 md:grid-cols-12 md:px-12 md:py-48">
+        <div class="md:col-span-5">
+          <p class="section-label reveal-up">05 — CONTACT</p>
+          <h2 class="section-title mask-reveal"><span>GET IN<br>TOUCH</span></h2>
+          <p class="body-jp mt-10 text-muted reveal-up">
+            お取引・パートナーシップ・メディア掲載に関するご相談は、こちらのフォームよりお気軽にお問い合わせください。担当者より折り返しご連絡いたします。
+          </p>
+        </div>
+
+        <div class="form-wrap md:col-span-6 md:col-start-7">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="field reveal-up">
+              <input id="f-name" name="name" type="text" placeholder=" " required autocomplete="name">
+              <label for="f-name">お名前 <span>Name</span><em>*</em></label>
+            </div>
+            <div class="field reveal-up">
+              <input id="f-company" name="company" type="text" placeholder=" " autocomplete="organization">
+              <label for="f-company">貴社名 <span>Company</span></label>
+            </div>
+            <div class="field reveal-up">
+              <input id="f-email" name="email" type="email" placeholder=" " required autocomplete="email">
+              <label for="f-email">メールアドレス <span>Email</span><em>*</em></label>
+            </div>
+            <div class="field reveal-up">
+              <textarea id="f-message" name="message" rows="5" placeholder=" " required></textarea>
+              <label for="f-message">お問い合わせ内容 <span>Message</span><em>*</em></label>
+            </div>
+            <p class="form-error" role="alert" aria-live="polite"></p>
+            <button type="submit" class="submit-btn reveal-up">
+              <span class="label">SEND MESSAGE</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <div id="formDone" class="form-done" aria-live="polite" hidden>
+            <svg viewBox="0 0 80 80" class="done-mark" aria-hidden="true">
+              <circle cx="40" cy="40" r="36" fill="none" stroke="#C5A059" stroke-width="1"/>
+              <path d="M26 41 L36 51 L55 31" fill="none" stroke="#C5A059" stroke-width="1.5"/>
+            </svg>
+            <p class="done-en">THANK YOU</p>
+            <p class="done-jp">お問い合わせを受け付けました。<br>内容を確認のうえ、担当者よりご連絡いたします。</p>
+            <button type="button" id="formReset" class="text-link">新しいお問い合わせ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="mx-auto max-w-[1440px] px-6 md:px-12">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">KBT</div>
+          <p class="footer-tag">Timeless Japanese Culture to the World</p>
+        </div>
+        <address class="footer-addr">
+          KBT株式会社<br>
+          〒108-0014 東京都港区芝5-34-2<br>ミタマチテラス 4F
+        </address>
+      </div>
+      <div class="footer-bottom">
+        <button type="button" id="privacyOpen" class="text-link">Privacy Policy / プライバシーポリシー</button>
+        <p>© 2026 KBT Inc. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ Privacy Modal ============ -->
+  <div id="privacyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" data-lenis-prevent>
+      <button type="button" class="modal-close" data-close aria-label="閉じる"><span></span><span></span></button>
+      <p class="section-label">PRIVACY POLICY</p>
+      <h2 id="privacyTitle" class="modal-title">個人情報保護方針</h2>
+      <div class="policy">
+        <p>KBT株式会社（以下「当社」）は、お客様の個人情報の重要性を認識し、その保護を社会的責務と考え、以下の方針に基づき個人情報の適切な取り扱いと保護に努めます。</p>
+        <h3>1. 個人情報の取得</h3>
+        <p>当社は、適法かつ公正な手段により個人情報を取得いたします。</p>
+        <h3>2. 利用目的</h3>
+        <p>当社は、取得した個人情報を以下の目的の範囲内で利用いたします。</p>
+        <ul>
+          <li>お問い合わせへの回答およびご連絡のため</li>
+          <li>商品の買取・販売・発送等、当社事業に関する取引の履行のため</li>
+          <li>当社サービスに関するご案内・情報提供のため</li>
+          <li>サービス向上のための分析・調査のため</li>
+        </ul>
+        <h3>3. 第三者提供</h3>
+        <p>当社は、法令に基づく場合を除き、ご本人の同意を得ることなく個人情報を第三者に提供いたしません。</p>
+        <h3>4. 委託</h3>
+        <p>当社は、利用目的の達成に必要な範囲で個人情報の取り扱いを外部に委託する場合があります。その際は、委託先に対し適切な監督を行います。</p>
+        <h3>5. 安全管理措置</h3>
+        <p>当社は、個人情報の漏えい、滅失またはき損の防止その他の安全管理のため、必要かつ適切な措置を講じます。</p>
+        <h3>6. 開示・訂正・利用停止等</h3>
+        <p>ご本人から個人情報の開示、訂正、追加、削除、利用停止等のご請求があった場合は、ご本人であることを確認のうえ、法令に従い遅滞なく対応いたします。</p>
+        <h3>7. Cookie等の利用</h3>
+        <p>当社ウェブサイトでは、利便性向上やアクセス解析のためにCookie等を使用する場合があります。ブラウザの設定によりCookieを無効にすることが可能です。</p>
+        <h3>8. 法令の遵守と継続的改善</h3>
+        <p>当社は、個人情報に関して適用される法令その他の規範を遵守するとともに、本方針の内容を適宜見直し、継続的な改善に努めます。</p>
+        <h3>9. お問い合わせ窓口</h3>
+        <p>KBT株式会社<br>〒108-0014 東京都港区芝5-34-2 ミタマチテラス 4F</p>
+        <p class="policy-date">制定日：2026年10月</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>
