@@ -24,6 +24,10 @@ from pathlib import Path
 
 BASE_URL = 'https://otb-ohmura.github.io/kbt-site/'   # 末尾は / で終える
 
+# 検索エンジンに載せない（noindex）。正式サイトは kbt-inc.jp なので、github.io 版は検索に出さない。
+# このサイトを正式な公開先にするときは False にして再生成する。
+NOINDEX = True
+
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / 'src' / 'template.html'
 I18N_JS = ROOT / 'i18n.js'
@@ -127,6 +131,8 @@ def build_page(template, code, tr):
 
     url = BASE_URL + slug(code)
     head = ['  <link rel="canonical" href="%s" />' % url]
+    if NOINDEX:
+        head.insert(0, '  <meta name="robots" content="noindex, nofollow" />')
     for c in LANGS:
         head.append('  <link rel="alternate" hreflang="%s" href="%s" />' % (c, BASE_URL + slug(c)))
     head.append('  <link rel="alternate" hreflang="x-default" href="%s" />' % (BASE_URL + slug('en')))
@@ -181,7 +187,12 @@ def main():
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + '\n'.join(urls) + '\n</urlset>\n')
     (ROOT / 'sitemap.xml').write_text(sitemap, encoding='utf-8')
-    (ROOT / 'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: %ssitemap.xml\n' % BASE_URL, encoding='utf-8')
+    if NOINDEX:
+        # 巡回は許可したまま、各ページの noindex を読ませて検索結果から外す（Disallow にすると noindex が読まれない）
+        robots = 'User-agent: *\nAllow: /\n'
+    else:
+        robots = 'User-agent: *\nAllow: /\n\nSitemap: %ssitemap.xml\n' % BASE_URL
+    (ROOT / 'robots.txt').write_text(robots, encoding='utf-8')
     print('  wrote sitemap.xml, robots.txt')
 
 

@@ -24,6 +24,11 @@ python3 tools/build.py
 を実行すると、10言語のページと sitemap が作り直されます。生成後にコミット・プッシュすれば公開に反映されます。
 （Node.js があれば Node、無ければ macOS 標準の JavaScript 実行環境で翻訳ファイルを読み取ります）
 
+## 検索エンジンへの掲載
+
+正式サイトは kbt-inc.jp のため、この github.io 版は `tools/build.py` の `NOINDEX = True` で検索に出ないようにしています（全ページに `noindex, nofollow`、robots.txt からサイトマップの案内を外す）。
+このリポジトリを正式な公開先にするときは `NOINDEX = False` にして再生成してください。
+
 ## ドメインを変えるとき
 
 1. `tools/build.py` の `BASE_URL` を新しいURL（例 `https://kbt-inc.jp/`）に変更して `python3 tools/build.py`
